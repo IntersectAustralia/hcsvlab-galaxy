@@ -1,0 +1,23 @@
+<tool id="Tokenizer" name="Tokenizer" version="0.01">
+<description>Splits the text from the input file into word tokens</description>
+<command interpreter="python">
+            Tokenizer.py $input1 $tab_file
+            </command>
+<inputs>
+<param name="input1"  type="data" format="txt" label="Select a suitable input file from your history"/> 
+<param name="job_name" type="text" size="25" label="Supply a name for the outputs to remind you what they contain" value="Tokenizer"/> 
+
+</inputs>
+<outputs>
+ <data format="tabular" name="tab_file" label="${job_name}"/>
+
+</outputs>
+<help>
+<![CDATA[   
+
+Splits the text from the input file into word tokens.
+
+]]>
+
+</help>
+</tool>

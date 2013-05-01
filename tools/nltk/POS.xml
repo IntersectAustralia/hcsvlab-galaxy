@@ -1,0 +1,23 @@
+<tool id="POS" name="POS" version="0.01">
+<description>Generates part of speech tags from text or a list of tokens</description>
+<command interpreter="python">
+            POS.py $input1 $tab_file
+            </command>
+<inputs>
+<param name="input1"  type="data" format="txt" label="Select a suitable input file from your history"/> 
+<param name="job_name" type="text" size="20" label="Supply a name for the outputs to remind you what they contain" value="POS"/> 
+
+</inputs>
+<outputs>
+ <data format="tabular" name="tab_file" label="${job_name}"/>
+
+</outputs>
+<help>
+<![CDATA[   
+
+Generates part of speech tags from text or a list of tokens.
+
+]]>
+
+</help>
+</tool>

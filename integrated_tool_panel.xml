@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<toolbox>
+    <section id="getext" name="Get Data" version="">
+        <tool id="upload1" />
+        <tool id="Concatenator" />
+    </section>
+    <section id="analysis_tools" name="Analyse Data" version="">
+        <tool id="Frequency" />
+    </section>
+    <section id="nltk_tools" name="NLTK Tools" version="">
+        <tool id="ReadSents" />
+        <tool id="Tokenizer" />
+        <tool id="POS" />
+        <tool id="Stemmer" />
+        <tool id="Collocation" />
+    </section>
+    <section id="jc_parser_tools" name="Johnson-Charniak Parser Tools" version="">
+        <tool id="JCParser" />
+    </section>
+    <section id="emu_r_tools" name="EMU/R Tools" version="">
+        <tool id="emu_r" />
+    </section>
+    <section id="tool_generator" name="Tool Generator" version="">
+    </section>
+</toolbox>

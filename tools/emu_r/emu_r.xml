@@ -1,0 +1,33 @@
+<tool id="emu_r" name="EMU/R Test" version="1.0.1">
+  <description>test emu</description>
+  <command interpreter="bash">r_wrapper.sh $script_file</command>
+
+  <inputs>
+  </inputs>
+
+  <configfiles>
+    <configfile name="script_file">
+      capture.output( suppressMessages( library('emu')))
+      capture.output( suppressMessages( emulink()))
+      segs = emu.query("md", "*", "Phonetic=vowel")
+      segs.fm = emu.track(segs, "fm", cut=0.5)
+      segs.lab = label(segs)
+      pdf( "${out_file1}" )
+      eplot(segs.fm[,1:2], segs.lab, formant=T)
+      devname = dev.off() 
+    </configfile>
+  </configfiles>
+
+  <outputs>
+    <data format="pdf" name="out_file1" />
+  </outputs>
+
+    <tests>
+        <test>
+            <output name="out_file1" file="XY_Plot_1_out.pdf"/>
+        </test>
+    </tests>
+<help>
+Test tool
+</help>
+</tool>

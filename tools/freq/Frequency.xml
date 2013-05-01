@@ -1,0 +1,25 @@
+<tool id="Frequency" name="Frequency List" version="0.01">
+<description>Takes a text input and generates a frequency list</description>
+<command interpreter="python">
+            Frequency.py $input1 $tab_file $pos
+
+            </command>
+<inputs>
+<param name="input1"  type="data" format="txt" label="Select a suitable input file from your history"/> 
+<param name="job_name" type="text" size ="25" label="Supply a name for the outputs to remind you what they contain" value="Frequency List"/>
+<param name="pos" type="boolean" label="Data input is a set of POS tags" />
+
+</inputs>
+<outputs>
+ <data format="tabular" name="tab_file" label="${job_name}"/>
+
+</outputs>
+<help>
+<![CDATA[   
+
+Takes a text input and generates a frequency list.
+
+]]>
+
+</help>
+</tool>

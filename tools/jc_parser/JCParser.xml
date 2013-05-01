@@ -1,0 +1,48 @@
+<tool id="JCParser" name="Johnson-Charniak Parser" version="1.0.0">
+<description>Parse the sentence using JC Parser</description>
+<command interpreter="python">
+            JCParser.py --script_path "$runMe" --interpreter "python" 
+            --tool_name "JCParser" --input_tab "$input1"   --output_tab "$tab_file" 
+            </command>
+<inputs>
+<param name="input1"  type="data" format="txt" label="Select a suitable input file from your history"/> 
+<param name="job_name" type="text" size="20" label="Supply a name for the outputs to remind you what they contain" value="JCParser"/> 
+
+</inputs>
+<outputs>
+ <data format="txt" name="tab_file" label="${job_name}"/>
+
+</outputs>
+<configfiles>
+<configfile name="runMe">
+<![CDATA[   
+import sys
+import os
+import nltk
+inp = sys.argv[1]
+outp = sys.argv[2]
+from nltk.corpus import PlaintextCorpusReader
+corpus = PlaintextCorpusReader(os.path.dirname(inp),os.path.basename(inp))
+sents = corpus.sents()
+parser = nltk.parse.johnsoncharniak.JohnsonCharniak()
+o = open(outp,'w')
+for item in sents:
+        tree = parser.parse(item)
+        print >> o, tree.pprint()
+o.close()
+]]>
+</configfile>
+</configfiles>
+<tests><test>
+        <param name="input1" value="JCParser_test1_input.xls" ftype="tabular"/>
+        <param name="job_name" value="test1"/>
+        <param name="runMe" value="$runMe"/>
+        <output name="tab_file" file="JCParser_test1_output.xls" ftype="tabular"/>
+        </test></tests>
+<help>
+<![CDATA[   
+Parse the sentence using JC Parser
+]]>
+
+</help>
+</tool>
