@@ -13,6 +13,7 @@
         <tool id="POS" />
         <tool id="Stemmer" />
         <tool id="Collocation" />
+        <tool id="ChartParser" />
     </section>
     <section id="jc_parser_tools" name="Johnson-Charniak Parser Tools" version="">
         <tool id="JCParser" />
@@ -21,5 +22,6 @@
         <tool id="emu_r" />
     </section>
     <section id="tool_generator" name="Tool Generator" version="">
+        <tool id="toolshed.g2.bx.psu.edu/repos/fubar/toolfactory/rgTF/0.10" />
     </section>
 </toolbox>

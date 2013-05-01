@@ -10,6 +10,7 @@
     <tool file="nltk/POS.xml" />
     <tool file="nltk/Stemmer.xml" />
     <tool file="nltk/Collocation.xml" />
+    <tool file="nltk/ChartParser.xml" />
   </section>
   <section name="Analyse Data" id="analysis_tools">
     <tool file="freq/Frequency.xml" />

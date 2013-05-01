@@ -1,0 +1,24 @@
+<tool id="ChartParser" name="Chart Parser" version="0.01">
+<description>Chart parser</description>
+<command interpreter="python">
+            ChartParser.py $input1 $grammar $tab_file
+            </command>
+<inputs>
+<param name="input1"  type="data" format="txt" label="Select a suitable input file from your history"/>
+<param name="grammar" type="data" format="txt" label="Grammar file to use in parsing" />
+<param name="job_name" type="text" size="25" label="Supply a name for the outputs to remind you what they contain" value="Chart Parser"/> 
+
+</inputs>
+<outputs>
+ <data format="tabular" name="tab_file" label="${job_name}"/>
+
+</outputs>
+<help>
+<![CDATA[   
+
+Chart parser.
+
+]]>
+
+</help>
+</tool>
