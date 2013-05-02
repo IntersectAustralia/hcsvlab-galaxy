@@ -17,6 +17,8 @@ try:
         words = nltk.word_tokenize(sent)
         tree = parser.parse(words)
         print >> o, tree
-except:
-    o.write("Error with parsing. Check the input files are correct and the grammar contains every word in the input sequence.")
+except Exception, e:
+    import sys
+    sys.stderr.write("Error with parsing. Check the input files are correct and the grammar contains every word in the input sequence. \n----\n" + str(e))
+    sys.exit()
 o.close()
