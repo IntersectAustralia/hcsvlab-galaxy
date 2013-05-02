@@ -1,5 +1,5 @@
 <tool id="ChartParser" name="Chart Parser" version="0.01">
-<description>Chart parser</description>
+<description>Parse the sentence using Chart Parser and a supplied grammar</description>
 <command interpreter="python">
             ChartParser.py $input1 $grammar $tab_file
             </command>
@@ -16,7 +16,7 @@
 <help>
 <![CDATA[   
 
-Chart parser.
+Parse the sentence using Chart Parser and a supplied grammar.
 
 ]]>
 

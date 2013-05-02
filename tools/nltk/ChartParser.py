@@ -18,5 +18,5 @@ try:
         tree = parser.parse(words)
         print >> o, tree
 except:
-    o.write("Error with parsing. Check the input and grammar files are correct.")
+    o.write("Error with parsing. Check the input files are correct and the grammar contains every word in the input sequence.")
 o.close()
