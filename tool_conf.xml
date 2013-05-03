@@ -18,7 +18,4 @@
   <section name="Johnson-Charniak Parser Tools" id="jc_parser_tools">
     <tool file="jc_parser/JCParser.xml" />
   </section>
-  <section name="EMU/R Tools" id="emu_r_tools">
-    <tool file="emu_r/emu_r.xml" />
-  </section>
 </toolbox>
