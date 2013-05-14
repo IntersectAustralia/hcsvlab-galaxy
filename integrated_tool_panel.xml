@@ -3,6 +3,7 @@
     <section id="getext" name="Get Data" version="">
         <tool id="upload1" />
         <tool id="Concatenator" />
+        <tool id="hcsvlab_importer" />
     </section>
     <section id="analysis_tools" name="Analyse Data" version="">
         <tool id="Frequency" />
