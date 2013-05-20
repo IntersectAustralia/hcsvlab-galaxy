@@ -1,5 +1,6 @@
 *
 !tool_conf.xml
 !galaxy
+!universe_wsgi.ini
 !.gitignore
 !tools
