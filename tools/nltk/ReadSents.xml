@@ -15,7 +15,7 @@
 <help>
 <![CDATA[   
 
-Segments the text input into separate sentences.
+Segment text input into sentences using the Punkt sentence segmenter. Output is one sentence per line.
 
 ]]>
 

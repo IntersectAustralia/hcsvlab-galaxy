@@ -15,7 +15,7 @@
 <help>
 <![CDATA[   
 
-Generates part of speech tags from text or a list of tokens.
+Input is a text or tokenised text. Applies Penn Treebank part-of-speech tags to each token in the text. Output includes the token and POS tag separated by /, eg. big/JJ
 
 ]]>
 

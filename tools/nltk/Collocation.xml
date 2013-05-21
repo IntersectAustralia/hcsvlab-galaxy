@@ -21,7 +21,7 @@
 <help>
 <![CDATA[   
 
-Generates a list of the most frequent collocations from an input sequence.
+Input is a text, optionally with POS tags. Output is a list of the top N collocations ordered by frequency.
 
 ]]>
 

@@ -40,8 +40,10 @@ o.close()
         <output name="tab_file" file="JCParser_test1_output.xls" ftype="tabular"/>
         </test></tests>
 <help>
-<![CDATA[   
-Parse the sentence using JC Parser
+<![CDATA[
+
+Input is sentence segmented text. Run the J-C Parser over the text with default settings, output is a bracketed parse tree for the sentences.
+
 ]]>
 
 </help>

@@ -15,7 +15,7 @@
 <help>
 <![CDATA[   
 
-Splits the text from the input file into word tokens.
+Segment text into words using the Penn Treebank word tokenizer. Most punctuation characters are treated as separate tokens. Output is one token per line.
 
 ]]>
 

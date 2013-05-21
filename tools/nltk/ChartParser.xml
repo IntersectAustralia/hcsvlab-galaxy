@@ -16,7 +16,7 @@
 <help>
 <![CDATA[   
 
-Parse the sentence using Chart Parser and a supplied grammar.
+Input is sentence segmented text and a suitable grammar. Run the chart parser over the sentence using the grammar. Output is a bracketed parse tree for the sentences.
 
 ]]>
 
