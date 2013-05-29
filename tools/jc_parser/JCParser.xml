@@ -9,7 +9,7 @@
 
 </inputs>
 <outputs>
-<data format="html" name="html_file" label="JCParser" />
+<data format="html" name="html_file" label="${job_name}" />
 </outputs>
 
 <help>
