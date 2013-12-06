@@ -15,7 +15,8 @@
 	-o
 	$output</command>
 <inputs>
-	<param name="input" type="data" format="mat" label="Input"/>
+    <param name="input" type="data" format="mat" label="Input">
+    </param>
     <param name="weightingFilters" type="select" multiple="True" display="checkboxes" label="Weighting Filters">
         <!-- <option value="bytes" selected="True">Byte count</option> -->
         <option value="Z" selected="True">Z (unweighted)</option>
@@ -23,7 +24,6 @@
         <option value="B" >B Weighting</option>
         <option value="C" >C Weighting</option>
         <option value="R" >RLB Weighting</option>
-
         <validator type="no_options" message="You must pick at least one weighting filter." />
     </param>
 
@@ -43,6 +43,7 @@
         <option value="r1" selected="True">RMS 1s</option>
         <option value="r3" >RMS 3s</option>
         <option value="r10" >RMS 10s</option>
+        <validator type="no_options" message="You must pick at least one RMS integration time." />
     </param>
     <param name="ignoreDelay" type="boolean" checked="yes" label="Ignore inital filter delay"/>
 
@@ -50,4 +51,18 @@
 <outputs>
 <data format="mat" name="output" label="Psysound Data Objects (SLM)"/>
 </outputs>
-<help> </help></tool>
+<help>
+.. class:: warningmark
+
+Make sure that the input file is a MATLAB (.mat) data file containing a fileset object.
+
+-----
+
+.. class:: infomark
+
+**What it does**
+
+Emulates a sound level meter with  user-selectable weighting filters (A B C Z) and integration times (fast and slow).  
+
+Outputs are time series corresponding to the selected analysis settings.
+</help></tool>

@@ -23,5 +23,27 @@
 <outputs>
 <data format="mat" name="output" label="Psysound Data Objects (Hilbert)"/>
 </outputs>
-<help> </help></tool>
+<help>
+.. class:: warningmark
+
+Make sure that the input file is a MATLAB (.mat) data file containing a fileset object.
+
+-----
+
+.. class:: infomark
+
+**What it does**
+
+Performs a Hilbert transform of the input wave.
+
+Outputs are: 
+
+*  1. instantaneous level (or Hilbert envelope function)
+
+*  2. instantaneous frequency
+
+*  3. instantaneous phase
+
+</help>
+</tool>
 

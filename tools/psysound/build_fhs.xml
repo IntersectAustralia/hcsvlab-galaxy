@@ -17,7 +17,7 @@
 <inputs>
         <repeat name="inputs" title="Input" >
             <param name="file" type="data" label="Select" format="wav" />
-	    <param name="calibration" size="10" type="float" value="1.0" label="Calibration Coefficient"/>
+	    <param name="calibration" size="10" type="float" min="0" value="1.0" label="Calibration Coefficient"/>
         </repeat>
 </inputs>
 <outputs>

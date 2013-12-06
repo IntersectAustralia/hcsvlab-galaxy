@@ -19,7 +19,7 @@
 	$output</command>
 <inputs>
 	<param name="input" type="data" format="mat" label="Input"/>
-	<param name="overlapValue" size="9" type="integer" value="75" label="Overlap Value"/>
+	<param name="overlapValue" size="10" type="float" value="75" label="Overlap Value"/>
 	<param name="overlapUnit" type="select" label="Overlap Unit">
 		<option value="percent"/>
 		<option value="ms"> millisecs </option>
@@ -63,5 +63,40 @@
 <outputs>
 <data format="mat" name="output" label="Psysound Data Objects (FFT)"/>
 </outputs>
-<help> </help></tool>
+<help>
+.. class:: warningmark
+
+Make sure that the input file is a MATLAB (.mat) data file containing a fileset object.
+
+-----
+
+.. class:: infomark
+
+**What it does**
+
+Performs successive fast Fourier transforms or chirp-Z transforms of the input wave. 
+Suitable for 1 and 2 channel files only 
+     
+Outputs are: 
+
+* 1. Magnitude spectrogram
+
+* 2. Average power spectrum (optionally including phase-adjusted complex averages)
+
+* 3. Right-left average and difference spectra (2-chan) 
+
+* 4. Level of the spectrum Standardized and non-standardized power spectral moments, like 
+
+* 5. Centroid 
+
+* 6. Standard deviation 
+
+* 7. Skewness 
+
+* 8. Kurtosis
+
+ 
+ 
+Note - the complex averages are implemented on a trial basis at present
+</help></tool>
 
