@@ -1,0 +1,27 @@
+<tool id="psysound_hilbert" name="Hilbert">
+<description> analyser</description>
+<command interpreter="bash">
+	run_psysound3Compiled.sh 
+	runHilbert
+	-i
+	$input
+	-w
+	$weighting
+	-o
+	$output 
+</command>
+<inputs>
+	<param name="input" type="data" format="mat" label="Input"/>
+	<param name="weighting" type="select" label="Weighting">
+		<option value="none"/>
+		<option value="A"/>
+		<option value="B"/>
+		<option value="C"/>
+		<option value="D"/>
+	</param>
+</inputs>
+<outputs>
+<data format="mat" name="output" label="Psysound Data Objects (Hilbert)"/>
+</outputs>
+<help> </help></tool>
+

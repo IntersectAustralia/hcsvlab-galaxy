@@ -1,0 +1,53 @@
+<tool id="psysound_slm" name="SLM">
+<description> analyser</description>
+<command interpreter="bash">
+	run_psysound3Compiled.sh 
+	runSLM
+	-i
+	$input
+	-wc
+	$weightingFilters
+    -ic
+    $integrationTime
+    $RMS
+    -d
+    $ignoreDelay
+	-o
+	$output</command>
+<inputs>
+	<param name="input" type="data" format="mat" label="Input"/>
+    <param name="weightingFilters" type="select" multiple="True" display="checkboxes" label="Weighting Filters">
+        <!-- <option value="bytes" selected="True">Byte count</option> -->
+        <option value="Z" selected="True">Z (unweighted)</option>
+        <option value="A" selected="True">A Weighting</option>
+        <option value="B" >B Weighting</option>
+        <option value="C" >C Weighting</option>
+        <option value="R" >RLB Weighting</option>
+
+        <validator type="no_options" message="You must pick at least one weighting filter." />
+    </param>
+
+    <param name="integrationTime" type="select" multiple="True" display="checkboxes" label="Integration Time">
+        <!-- <option value="bytes" selected="True">Byte count</option> -->
+        <option value="p" >Peak (50us)</option>
+        <option value="i" >Impulse (35ms)</option>
+        <option value="f" selected="True">Fast (125ms)</option>
+        <option value="s" >Slow (1s)</option>
+
+        <validator type="no_options" message="You must pick at least one integration time." />
+    </param>
+
+    <param name="RMS" type="select" multiple="True" display="checkboxes" label="RMS Integration Time">
+        <!-- <option value="bytes" selected="True">Byte count</option> -->
+        <option value="r0.125" selected="True">RMS 125ms</option>
+        <option value="r1" selected="True">RMS 1s</option>
+        <option value="r3" >RMS 3s</option>
+        <option value="r10" >RMS 10s</option>
+    </param>
+    <param name="ignoreDelay" type="boolean" checked="yes" label="Ignore inital filter delay"/>
+
+</inputs>
+<outputs>
+<data format="mat" name="output" label="Psysound Data Objects (SLM)"/>
+</outputs>
+<help> </help></tool>

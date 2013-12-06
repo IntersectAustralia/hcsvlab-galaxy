@@ -1,0 +1,23 @@
+<tool id="psysound_plot" name="Plot Data Object">
+<description>View a single-axis plot of a psysound data object</description>
+<command interpreter="bash">
+	run_psysound3Compiled.sh 
+	plotter
+	-i
+	$input
+	-fi
+	$fileIndex
+	-oi
+	$objIndex
+	-o
+	$output</command>
+<inputs>
+<param name="input" type="data" format="mat" label="Select" />
+<param name="fileIndex" size="2" type="integer" value="1" label="File Index"/>
+<param name="objIndex" size="2" type="integer" value="1" label="Object Index"/>
+</inputs>
+<outputs>
+<data format="jpg" name="output" label="Psysound Plot"/>
+</outputs>
+<help> </help></tool>
+

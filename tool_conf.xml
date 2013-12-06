@@ -19,4 +19,11 @@
   <section name="Johnson-Charniak Parser Tools" id="jc_parser_tools">
     <tool file="jc_parser/JCParser.xml" />
   </section>
+  <section name="PsySound" id="psysound">
+    <tool file="psysound/build_fhs.xml" />    
+    <tool file="psysound/run_hilbert.xml" />
+    <tool file="psysound/run_fft.xml" />
+    <tool file="psysound/run_slm.xml" />
+    <tool file="psysound/make_plot.xml" />
+  </section
 </toolbox>

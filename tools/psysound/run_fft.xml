@@ -1,0 +1,67 @@
+<tool id="psysound_fft" name="FFT">
+<description> analyser</description>
+<command interpreter="bash">
+	run_psysound3Compiled.sh 
+	runFFT
+	-i
+	$input
+	-ov
+	$overlapValue
+	-ou
+	$overlapUnit
+	-ws
+	$windowSize
+	-wf
+	$windowFunction
+	-c
+	$complex
+	-o
+	$output</command>
+<inputs>
+	<param name="input" type="data" format="mat" label="Input"/>
+	<param name="overlapValue" size="9" type="integer" value="75" label="Overlap Value"/>
+	<param name="overlapUnit" type="select" label="Overlap Unit">
+		<option value="percent"/>
+		<option value="ms"> millisecs </option>
+		<option value="s"> secs </option>
+		<option value="samples"/>
+	</param>
+	<param name="windowSize" type="select" label="Window Size">
+		<option value="128">2^7 (128 samples)</option>
+		<option value="256">2^8 (256 samples)</option>
+		<option value="512">2^9 (512 samples)</option>
+		<option value="1024">2^10 (1024 samples)</option>
+		<option value="2048" selected='true'>2^11 (2048 samples)</option>
+		<option value="4096">2^12 (4096 samples)</option>
+		<option value="8192">2^13 (8192 samples)</option>
+		<option value="16384">2^14 (16384 samples)</option>
+		<option value="32768">2^15 (32768 samples)</option>
+		<option value="65536">2^16 (65536 samples)</option>
+		<option value="131072">2^17 (131072 samples)</option>
+		<option value="262144">2^18 (262144 samples)</option>
+		<option value="524288">2^19 (524288 samples)</option>
+		<option value="1048576">2^20 (1048576 samples)</option>
+	</param>
+	<param name="windowFunction" type="select" label="Windowing Function">
+		<option value="Hanning"/>
+		<option value="Hamming"/>
+		<option value="Bartlett"/>
+		<option value="Bohman"/>
+		<option value="Gaussian"/>
+		<option value="ModifiedBartlett-Hann"/>
+		<option value="Blackman"/>
+		<option value="BlackmanHarris"/>
+		<option value="Nuttall"/>
+		<option value="Chebyshev100dB"/>
+		<option value="Chebyshev120dB"/>
+		<option value="Chebyshev140dB"/>
+		<option value="Flattop"/>
+		<option value="Rectangular"/>
+	</param>
+   	<param name="complex" type="boolean" checked="no" label="Do complex average"/>
+</inputs>
+<outputs>
+<data format="mat" name="output" label="Psysound Data Objects (FFT)"/>
+</outputs>
+<help> </help></tool>
+
