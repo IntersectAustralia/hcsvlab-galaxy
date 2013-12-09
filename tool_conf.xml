@@ -1,6 +1,6 @@
-<?xml version="1.0"?>
+<?xml version='1.0' encoding='utf-8'?>
 <toolbox>
-  <section name="Get Data" id="getext">
+  <section id="getext" name="Get Data">
     <tool file="data_source/upload.xml" />
     <tool file="data_source/Concatenator.xml" />
     <tool file="data_source/hcsvlab_importer.xml" />
@@ -25,5 +25,5 @@
     <tool file="psysound/run_fft.xml" />
     <tool file="psysound/run_slm.xml" />
     <tool file="psysound/make_plot.xml" />
-  </section
+  </section>
 </toolbox>

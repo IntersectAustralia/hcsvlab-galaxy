@@ -5,7 +5,7 @@
 # the specified command.
 #
 
-MCRROOT='/home/bwitz/MATLAB/MATLAB_Compiler_Runtime/v716'
+MCRROOT='/home/devel/MATLAB/MATLAB_Compiler_Runtime/v716'
 
 exe_name=$0
 exe_dir=`dirname "$0"`
