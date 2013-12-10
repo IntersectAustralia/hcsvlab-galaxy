@@ -2,6 +2,8 @@
 !tool_conf.xml
 !galaxy
 !universe_wsgi.ini
+!tool_shed_wsgi.ini
+!tool_sheds_conf.xml
 !.gitignore
 !tools
 !README.md
