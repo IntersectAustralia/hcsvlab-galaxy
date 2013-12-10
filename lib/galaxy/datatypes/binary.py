@@ -512,15 +512,15 @@ class Matlab(Binary):
     file_ext = "mat"
     def __init__( self, **kwd ):
         Binary.__init__( self, **kwd )
-
+ 
     def sniff( self, filename ):
-        # The header of any psysound matlab file starts with "MATLAB 5.0 MAT-file", and the file is binary.
+        # The header of any psysound matlab file starts with "MATLAB 5.0 MAT-file", and the file is binary. 
     # (see: https://maxwell.ict.griffith.edu.au/spl/matlab-page/matfile_format.pdf)
         try:
             header = open( filename ).read()
             if "MATLAB" in header and "5.0" in header:
                 return True
-            else:
+            else: 
                 return False
         except:
             return False
@@ -538,6 +538,14 @@ class Matlab(Binary):
         except:
             return "Matlab Binary file (%s)" % ( data.nice_size( dataset.get_size() ) )
 
+    def display_data(self, trans, dataset, preview=False, filename=None, to_ext=None, size=None, offset=None, **kwd):
+        if preview:    
+            return ("MATALB data files cannot be previewed.")
+        else:
+            return super(Matlab, self).display_data( trans, dataset, preview, filename, to_ext, size, offset, **kwd)
+
+                       
+    
 Binary.register_sniffable_binary_format("mat", "mat", Matlab)
 
 class Wav(Binary):
@@ -551,7 +559,7 @@ class Wav(Binary):
             header = open( filename ).read()
             if header.starts_with("RIFF"):
                 return True
-            else:
+            else: 
                 return False
         except:
             return False
@@ -569,5 +577,10 @@ class Wav(Binary):
         except:
             return "Audio WAV file (%s)" % ( data.nice_size( dataset.get_size() ) )
 
+    def display_data(self, trans, dataset, preview=False, filename=None, to_ext=None, size=None, offset=None, **kwd):
+        if preview:    
+            return ("WAV audio files cannot be previewed.")
+        else:
+            return super(Wav, self).display_data( trans, dataset, preview, filename, to_ext, size, offset, **kwd)      
+    
 Binary.register_sniffable_binary_format("wav", "wav", Wav)
-
