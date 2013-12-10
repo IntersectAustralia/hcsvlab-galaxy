@@ -249,6 +249,10 @@
     <datatype extension="xgmml" type="galaxy.datatypes.graph:Xgmml" display_in_upload="true"/>
     <datatype extension="sif" type="galaxy.datatypes.graph:Sif" display_in_upload="true"/>
     <datatype extension="rdf" type="galaxy.datatypes.graph:Rdf" display_in_upload="true"/>
+    <!-- HCSvLab Datatypes -->
+    <datatype extension="mat" type="galaxy.datatypes.binary:Matlab" mimetype="application/octet-stream" display_in_upload="true"/>
+    <datatype extension="wav" type="galaxy.datatypes.binary:Wav" mimetype="application/octet-stream"  display_in_upload="true"/>
+    <!-- End HCSvLab Datatypes -->
   </registration>
   <sniffers>
     <!--
@@ -262,6 +266,8 @@
     <sniffer type="galaxy.datatypes.binary:TwoBit"/>
     <sniffer type="galaxy.datatypes.binary:Bam"/>
     <sniffer type="galaxy.datatypes.binary:Sff"/>
+    <sniffer type="galaxy.datatypes.binary:Matlab"/>
+    <sniffer type="galaxy.datatypes.binary:Wav"/>
     <sniffer type="galaxy.datatypes.xml:Phyloxml"/>
     <sniffer type="galaxy.datatypes.xml:GenericXml"/>
     <sniffer type="galaxy.datatypes.sequence:Maf"/>
