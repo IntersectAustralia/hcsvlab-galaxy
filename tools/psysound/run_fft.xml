@@ -63,6 +63,7 @@
 <outputs>
 <data format="mat" name="output" label="Psysound Data Objects (FFT)"/>
 </outputs>
+<options refresh="True"/>
 <help>
 .. class:: warningmark
 

@@ -23,5 +23,6 @@
 <outputs>
 <data format="mat" name="output" label="Psysound Fileset"/>
 </outputs>
+<options refresh="True"/>
 <help> </help></tool>
 

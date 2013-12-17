@@ -12,6 +12,7 @@
  <data format="txt" name="tab_file" label="${job_name}"/>
 
 </outputs>
+<options refresh="True"/>
 <help>
 <![CDATA[   
 

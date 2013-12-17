@@ -19,5 +19,6 @@
 <outputs>
 <data format="jpg" name="output" label="Psysound Plot"/>
 </outputs>
+<options refresh="True"/>
 <help> </help></tool>
 
