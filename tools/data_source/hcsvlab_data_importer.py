@@ -39,6 +39,7 @@ def get_json(url):
 		raise		
 
 def importData(prefix, ext, data):
+	prefix = prefix.replace("_", "-")
 	newFile = "%s/primary_%s_%s_visible_%s" % (fileDir, logFileID, prefix, ext)
 	target = open (newFile, 'w')
 	target.write(str(data))
