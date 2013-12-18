@@ -31,7 +31,7 @@ log = logging.getLogger(__name__)
 class Binary( data.Data ):
     """Binary data"""
     sniffable_binary_formats = []
-    unsniffable_binary_formats = ['wav']
+    unsniffable_binary_formats = ['wav','mp3','avi','ogg']
 
     @staticmethod
     def register_sniffable_binary_format(data_type, ext, type_class):
@@ -566,7 +566,7 @@ class Wav(Binary):
 
     def set_peek( self, dataset, is_multi_byte=False ):
         if not dataset.dataset.purged:
-            dataset.peek  = "Audio WAV file"
+            dataset.peek  = "Audio (WAV) file"
             dataset.blurb = data.nice_size( dataset.get_size() )
         else:
             dataset.peek = 'file does not exist'
@@ -575,7 +575,7 @@ class Wav(Binary):
         try:
             return dataset.peek
         except:
-            return "Audio WAV file (%s)" % ( data.nice_size( dataset.get_size() ) )
+            return "Audio (WAV) file (%s)" % ( data.nice_size( dataset.get_size() ) )
 
     def display_data(self, trans, dataset, preview=False, filename=None, to_ext=None, size=None, offset=None, **kwd):
         if preview:    
@@ -583,4 +583,77 @@ class Wav(Binary):
         else:
             return super(Wav, self).display_data( trans, dataset, preview, filename, to_ext, size, offset, **kwd)      
     
-Binary.register_sniffable_binary_format("wav", "wav", Wav)
+class Mp3(Binary):
+
+    file_ext = "mp3"
+    def __init__( self, **kwd ):
+        Binary.__init__( self, **kwd )
+
+    def set_peek( self, dataset, is_multi_byte=False ):
+        if not dataset.dataset.purged:
+            dataset.peek  = "Audio (MP3) file"
+            dataset.blurb = data.nice_size( dataset.get_size() )
+        else:
+            dataset.peek = 'file does not exist'
+            dataset.blurb = 'file purged from disk'
+    def display_peek( self, dataset ):
+        try:
+            return dataset.peek
+        except:
+            return "Audio (MP3) file (%s)" % ( data.nice_size( dataset.get_size() ) )
+
+    def display_data(self, trans, dataset, preview=False, filename=None, to_ext=None, size=None, offset=None, **kwd):
+        if preview:    
+            return ("MP3 audio files cannot be previewed.")
+        else:
+            return super(Mp3, self).display_data( trans, dataset, preview, filename, to_ext, size, offset, **kwd)      
+    
+class Avi(Binary):
+
+    file_ext = "avi"
+    def __init__( self, **kwd ):
+        Binary.__init__( self, **kwd )
+
+    def set_peek( self, dataset, is_multi_byte=False ):
+        if not dataset.dataset.purged:
+            dataset.peek  = "Video (AVI) file"
+            dataset.blurb = data.nice_size( dataset.get_size() )
+        else:
+            dataset.peek = 'file does not exist'
+            dataset.blurb = 'file purged from disk'
+    def display_peek( self, dataset ):
+        try:
+            return dataset.peek
+        except:
+            return "Video (AVI) file (%s)" % ( data.nice_size( dataset.get_size() ) )
+
+    def display_data(self, trans, dataset, preview=False, filename=None, to_ext=None, size=None, offset=None, **kwd):
+        if preview:    
+            return ("AVI video files cannot be previewed.")
+        else:
+            return super(Avi, self).display_data( trans, dataset, preview, filename, to_ext, size, offset, **kwd)      
+
+class Ogg(Binary):
+
+    file_ext = "ogg"
+    def __init__( self, **kwd ):
+        Binary.__init__( self, **kwd )
+
+    def set_peek( self, dataset, is_multi_byte=False ):
+        if not dataset.dataset.purged:
+            dataset.peek  = "Media (OGG) file"
+            dataset.blurb = data.nice_size( dataset.get_size() )
+        else:
+            dataset.peek = 'file does not exist'
+            dataset.blurb = 'file purged from disk'
+    def display_peek( self, dataset ):
+        try:
+            return dataset.peek
+        except:
+            return "Media (OGG) file (%s)" % ( data.nice_size( dataset.get_size() ) )
+
+    def display_data(self, trans, dataset, preview=False, filename=None, to_ext=None, size=None, offset=None, **kwd):
+        if preview:    
+            return ("OGG media files cannot be previewed.")
+        else:
+            return super(Ogg, self).display_data( trans, dataset, preview, filename, to_ext, size, offset, **kwd)      
