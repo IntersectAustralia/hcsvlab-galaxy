@@ -1,0 +1,34 @@
+<tool id="hcsvlab_data_importer" name="HCSVLAB Data Importer" version="0.01" force_history_refresh="True">
+<description>Takes a comma-separated list of URLs and concatenates the content of those files to one output</description>
+<command interpreter="python">
+            hcsvlab_data_importer.py '$job_name' '$output1' '$output1.id' $__new_file_path__ '$item_list' '$api_key' '$importTypes' '$metadata' '$indexable' '$concat'
+            </command>
+<inputs>
+<param name="item_list" type="text" size="70" label="Item List URL" help="Specify the item list URL from HCS vLab" value="${item_list}"/>
+<param name="api_key" type="text" size="30" label="API Key" help="Your HCS vLab API key" value="${api_key}"/>
+<param name="job_name" type="text" size="25" label="Supply a name for the outputs to remind you what they contain" value="HCSVLAB Data"/>
+<param name="importTypes" type="select" label="Import document types" display="checkboxes" multiple="true">
+	<option selected="True" value="Text"/>
+	<option selected="True" value="Image"/>
+	<option selected="True" value="Audio"/>
+	<option selected="True" value="Video"/>
+	<option selected="True" value="Other"/>
+</param>
+<param name="metadata" type="boolean" checked="no" label="Import metadata"/>
+<param name="indexable" type="boolean" checked="yes" label="Import indexable texts only (when present)"/>
+<param name="concat" type="boolean" checked="no" label="Concatenate all text documents into one galaxy document"/>
+</inputs>
+
+<outputs>
+ <data format="data" name="output1" label="${job_name}"/>
+</outputs>
+<options refresh="True"/>
+<help>
+<![CDATA[   
+
+Takes a comma-separated list of URLs and concatenates the content of those files to one output.
+
+]]>
+
+</help>
+</tool>
