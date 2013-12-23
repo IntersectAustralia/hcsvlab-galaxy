@@ -540,7 +540,7 @@ class Matlab(Binary):
 
     def display_data(self, trans, dataset, preview=False, filename=None, to_ext=None, size=None, offset=None, **kwd):
         if preview:    
-            return ("MATALB data files cannot be previewed.")
+            return ("MATLAB data files cannot be previewed.")
         else:
             return super(Matlab, self).display_data( trans, dataset, preview, filename, to_ext, size, offset, **kwd)
 
