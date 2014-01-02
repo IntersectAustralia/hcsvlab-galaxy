@@ -16,6 +16,7 @@
   </section>
   <section name="Analyse Data" id="analysis_tools">
     <tool file="freq/Frequency.xml" />
+    <tool file="pargram/xle-web.xml" />
   </section>
   <section name="Johnson-Charniak Parser Tools" id="jc_parser_tools">
     <tool file="jc_parser/JCParser.xml" />
