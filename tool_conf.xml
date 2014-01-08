@@ -21,6 +21,9 @@
   <section name="Johnson-Charniak Parser Tools" id="jc_parser_tools">
     <tool file="jc_parser/JCParser.xml" />
   </section>
+  <section name="ParseEval" id="parse_eval">
+    <tool file="parse_eval/ParseEval.xml" />
+  </section>
   <section name="PsySound" id="psysound">
     <tool file="psysound/build_fhs.xml" />    
     <tool file="psysound/run_hilbert.xml" />
