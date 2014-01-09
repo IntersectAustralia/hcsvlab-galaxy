@@ -30,7 +30,7 @@ data="""
 
 data = data.replace('##_XLE_WEB_URL_##', XLE_WEB_URL)
 data = data.replace('##_GRAMMAR_##', 'Indonesian')
-data = data.replace('##_SENTENCE_##', text.replace('"', '\"'))
+data = data.replace('##_SENTENCE_##', text.replace('"', '&quot;'))
 
 # write result in the output file
 o = open(outp,'w')
