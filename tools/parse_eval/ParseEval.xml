@@ -55,7 +55,6 @@
 	    	write("&lt;pre&gt;", file="${html_file}", append=TRUE)
 	    	sink("${html_file}", append=TRUE)
 
-	    	set.seed(2954) # make examples reproducible
 			parse&lt;-parseval(c1=c(${c1a},${c1b}), c2=c(${c2a},${c2b}), c3=c(${c3a},${c3b}), cipi12=c(${cipi12a},${cipi12b}), cipi23=c(${cipi23a},${cipi23b}), voweld=${voweld}, anchor=${anchor}, var_anchor=${var_anchor}, word_types=${types}, words_per_word_type=${words}, simN=${simN}, RE_rsd=${RE_rsd}, CC_rsd=${CC_rsd}, LE_rsd=${LE_rsd})
 
 			sink()
