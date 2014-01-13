@@ -82,13 +82,13 @@
 			p1_s
 			p2_s
 			rs.3
-			dev.off()
+			invisible(dev.off())
 
 			pdf(file.path("${html_file.files_path}", "complex_plots.pdf"))
 			p1_c
 			p2_c
 			rs.4
-			dev.off()
+			invisible(dev.off())
 
 		</configfile>
 	</configfiles>
