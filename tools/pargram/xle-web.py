@@ -1,15 +1,16 @@
+# -*- coding: utf-8 -*-
+
 import sys
-import os
-import urllib
 
 # Define constants
 XLE_WEB_URL = "http://clarino.uib.no/iness/xle-web"
 
 # Read arguments
 inp = sys.argv[1]
+grammar = sys.argv[2]
 text = open(inp,'r').read()
 
-outp = sys.argv[2]
+outp = sys.argv[3]
 
 # Define Indinesian as pre-selected grammar
 data="""
@@ -29,7 +30,7 @@ data="""
 """
 
 data = data.replace('##_XLE_WEB_URL_##', XLE_WEB_URL)
-data = data.replace('##_GRAMMAR_##', 'Indonesian')
+data = data.replace('##_GRAMMAR_##', grammar)
 data = data.replace('##_SENTENCE_##', text.replace('"', '&quot;'))
 
 # write result in the output file
