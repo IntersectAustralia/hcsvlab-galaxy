@@ -29,6 +29,8 @@ data="""
     </script>
 """
 
+grammar = grammar.replace('__aring__', 'å')
+
 data = data.replace('##_XLE_WEB_URL_##', XLE_WEB_URL)
 data = data.replace('##_GRAMMAR_##', grammar)
 data = data.replace('##_SENTENCE_##', text.replace('"', '&quot;'))

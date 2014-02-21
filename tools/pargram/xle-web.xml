@@ -1,7 +1,7 @@
 <tool id="xle-web" name="XLE-Web" version="0.01">
 	<description>Takes a text input and generates an interface with INESS XLE-Web tool</description>
 	<command interpreter="python">
-		xle-web.py $input1 $grammar $html_file
+		xle-web.py $input1 '$grammar' $html_file
 	</command>
 
 	<inputs>
@@ -18,8 +18,8 @@
             <option selected="False" value="German"/>
             <option selected="True" value="Indonesian"/>
             <option selected="False" value="Malagasy"/>
-            <option selected="False" value="Norwegian Bokmål"/>
-            <option selected="False" value="Norwegian Bokmål (NER)"/>
+            <option selected="False" value="Norwegian Bokm__aring__l">Norwegian Bokmål</option>
+            <option selected="False" value="Norwegian Bokm__aring__l (NER)">Norwegian Bokmål (NER)</option>
             <option selected="False" value="Norwegian Nynorsk"/>
             <option selected="False" value="Tigrinya"/>
             <option selected="False" value="Turkish"/>
