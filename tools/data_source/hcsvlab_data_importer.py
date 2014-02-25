@@ -98,16 +98,16 @@ try:
 
 		#collect the documents/metadata to import
 		if importMetadata == "true":
-			content = itemResponse['metadata']
+			content = itemResponse['hcsvlab:metadata']
 			log.write("---- metadata document: "+(str(content))[:100]+"...\n")
 			metadataItem = {'name':itemName }
 			metadataItem['content'] = content
 			metadataList.append(metadataItem)
-		if concatenate == "true" and (str(itemResponse['primary_text_url']) != "No primary text found"):
+		if concatenate == "true" and (str(itemResponse['hcsvlab:primary_text_url']) != "No primary text found"):
 			indexableItem = {'name':itemName}
-			indexableItem['url'] = itemResponse['primary_text_url']
+			indexableItem['url'] = itemResponse['hcsvlab:primary_text_url']
 			concatenateList.append(indexableItem)
-		docs = itemResponse['documents']
+		docs = itemResponse['hcsvlab:documents']
 		for doc in docs: 
 			if doc['dc:type'] in selectedTypes:
 				log.write("---- document: "+str(doc['url'])+"\n")
