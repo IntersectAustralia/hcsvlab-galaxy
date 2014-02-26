@@ -56,7 +56,7 @@ def importData(prefix, ext, data):
 		importFailCount += 1
 
 def importDocument(document):
-	docURL = document['url']
+	docURL = document['hcsvlab:url']
 	listURL = docURL.split("/")
 	docName= listURL[-1]
 	docPrefix = docName.split(".")[0]
@@ -105,12 +105,12 @@ try:
 			metadataList.append(metadataItem)
 		if concatenate == "true" and (str(itemResponse['hcsvlab:primary_text_url']) != "No primary text found"):
 			indexableItem = {'name':itemName}
-			indexableItem['url'] = itemResponse['hcsvlab:primary_text_url']
+			indexableItem['hcsvlab:url'] = itemResponse['hcsvlab:primary_text_url']
 			concatenateList.append(indexableItem)
 		docs = itemResponse['hcsvlab:documents']
 		for doc in docs: 
 			if doc['dc:type'] in selectedTypes:
-				log.write("---- document: "+str(doc['url'])+"\n")
+				log.write("---- document: "+str(doc['hcsvlab:url'])+"\n")
 				if (concatenate == "false" or doc['dc:type'] != "Text"):
 					documentsList.append(doc)
 	log.write("\n\n")				
@@ -128,7 +128,7 @@ try:
 				status, content = api_request( url=(textItem['url']).encode('ascii','ignore'))
 				concatenatedContent = concatenatedContent +"\n\n"+str(content)
 			except Exception, e:
-				log.write("!! Error importing document "+str(textItem['url'])+": "+ str(e)+"\n")
+				log.write("!! Error importing document "+str(textItem['hcsvlab:url'])+": "+ str(e)+"\n")
 		if concatenatedContent != "":
 			importData('concatenated texts', 'txt', concatenatedContent)
 
