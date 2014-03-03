@@ -13,6 +13,9 @@ corpus = PlaintextCorpusReader(os.path.dirname(inp),os.path.basename(inp))
 sents = corpus.sents()
 parser = nltk.parse.johnsoncharniak.JohnsonCharniak()
 
+# Assumes X11 window is setup, with display variable :1
+os.environ["DISPLAY"] = ":1"
+
 links = "<h2><center><a href='combined.html'>Combined</a> | <a href='text.html'>Text Only</a> | <a href='drawing.html'>Drawing Only</a></center></h2><br>"
 
 text = open((directory +'/text.html'),'w')
