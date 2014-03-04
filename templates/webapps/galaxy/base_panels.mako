@@ -18,19 +18,4 @@ ${parent.late_javascripts()}
         mod_masthead.load(self.active_view);
     %>
 
-    ## Logo, layered over tabs to be clickable
-    <div class="title">
-        <a href="${h.url_for( app.config.get( 'logo_url', '/' ) )}">
-        <img border="0" src="${h.url_for('/static/images/galaxyIcon_noText.png')}">
-        Galaxy
-        </a>
-        %if app.config.brand:
-             / 
-            <a href="${h.url_for( app.config.get( 'hcsvlab_url', '/' ) )}">
-                <span>${app.config.brand}</span>
-            </a>
-        %endif
-
-    </div>
-
 </%def>
