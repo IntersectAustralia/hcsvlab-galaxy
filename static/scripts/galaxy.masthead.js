@@ -21,6 +21,15 @@ var GalaxyMasthead = Backbone.View.extend(
     {
         // update options
         this.options = options;
+
+        // Adds Google Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', options.ga_tracker_id, 'intersect.org.au');
+        ga('send', 'pageview');
     
         // HACK: due to body events defined in galaxy.panels.js
         $("body").off();
@@ -132,6 +141,7 @@ var GalaxyMasthead = Backbone.View.extend(
     _template: function(options)
     {
         var brand_text = options.brand ? options.brand : "" ;
+
         return  '<div><div id="masthead" class="navbar navbar-fixed-top navbar-inverse">' +
                     '<div style="position: relative; right: -50%; float: left;">' +
                         '<div id="navbar" style="display: block; position: relative; right: 50%;"></div>' +

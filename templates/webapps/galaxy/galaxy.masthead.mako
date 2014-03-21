@@ -34,7 +34,8 @@
         masthead_config = {
             ## inject configuration
             'brand'                     : app.config.get("brand", ""),
-            'hcsvlab_url'               : app.config.get("hcsvlab_url", ""), 
+            'hcsvlab_url'               : app.config.get("hcsvlab_url", ""),
+            'ga_tracker_id'             : app.config.get("ga_tracker_id", ""),
             'nginx_upload_path'         : app.config.get("nginx_upload_path", h.url_for(controller='api', action='tools')),
             'use_remote_user'           : app.config.use_remote_user,
             'remote_user_logout_href'   : app.config.remote_user_logout_href,
