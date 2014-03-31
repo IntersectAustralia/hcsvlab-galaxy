@@ -56,7 +56,7 @@ def importData(prefix, ext, data):
 		importFailCount += 1
 
 def importDocument(document):
-	docURL = document['hcsvlab:url']
+	docURL = document['alveo:url']
 	listURL = docURL.split("/")
 	docName= listURL[-1]
 	docPrefix = docName.split(".")[0]
@@ -75,7 +75,7 @@ concatenateList =[]
 metadataList =[]
 
 log = open (logFile, 'a')
-log.write("HCS vLab Import Tool.\n\n")
+log.write("Alveo Import Tool.\n\n")
 log.write("User input parameters are as follows: \n")
 log.write("\t Item List URI: "+itemListURI+"\n")
 log.write("\t API-KEY: "+api_key+"\n")
@@ -92,27 +92,32 @@ try:
 	log.write("This item list contains "+str(len(itemURIs))+" items.\n\n")
 
 	for itemURI in itemURIs:
-		log.write("ITEM: " +str(itemURI) + "\n")
-		itemResponse =  get_json(url=(itemURI).encode('ascii','ignore'))
-		itemName = (str(itemURI)).split("/")[-1]
+		try:
+			log.write("ITEM: " +str(itemURI) + "\n")
+			itemResponse =  get_json(url=(itemURI).encode('ascii','ignore'))
+			itemName = (str(itemURI)).split("/")[-1]
 
-		#collect the documents/metadata to import
-		if importMetadata == "true":
-			content = itemResponse['hcsvlab:metadata']
-			log.write("---- metadata document: "+(str(content))[:100]+"...\n")
-			metadataItem = {'name':itemName }
-			metadataItem['content'] = content
-			metadataList.append(metadataItem)
-		if concatenate == "true" and (str(itemResponse['hcsvlab:primary_text_url']) != "No primary text found"):
-			indexableItem = {'name':itemName}
-			indexableItem['hcsvlab:url'] = itemResponse['hcsvlab:primary_text_url']
-			concatenateList.append(indexableItem)
-		docs = itemResponse['hcsvlab:documents']
-		for doc in docs: 
-			if doc['dc:type'] in selectedTypes:
-				log.write("---- document: "+str(doc['hcsvlab:url'])+"\n")
-				if (concatenate == "false" or doc['dc:type'] != "Text"):
-					documentsList.append(doc)
+			#collect the documents/metadata to import
+			if importMetadata == "true":
+				content = itemResponse['alveo:metadata']
+				log.write("---- metadata document: "+(str(content))[:100]+"...\n")
+				metadataItem = {'name':itemName }
+				metadataItem['content'] = content
+				metadataList.append(metadataItem)
+			if concatenate == "true" and (str(itemResponse['alveo:primary_text_url']) != "No primary text found"):
+				indexableItem = {'name':itemName}
+				indexableItem['alveo:url'] = itemResponse['alveo:primary_text_url']
+				concatenateList.append(indexableItem)
+			docs = itemResponse['alveo:documents']
+			for doc in docs:
+				if doc['dc:type'] in selectedTypes:
+					log.write("---- document: "+str(doc['alveo:url'])+"\n")
+					if (concatenate == "false" or doc['dc:type'] != "Text"):
+						documentsList.append(doc)
+		except Exception,e:
+			#do not exit if a document could not be imported. Just log the details.
+			log.write("!! Error importing item "+itemURI+": "+ str(e))
+			importFailCount += 1
 	log.write("\n\n")				
 
 	#perform imports
@@ -128,7 +133,7 @@ try:
 				status, content = api_request( url=(textItem['url']).encode('ascii','ignore'))
 				concatenatedContent = concatenatedContent +"\n\n"+str(content)
 			except Exception, e:
-				log.write("!! Error importing document "+str(textItem['hcsvlab:url'])+": "+ str(e)+"\n")
+				log.write("!! Error importing document "+str(textItem['alveo:url'])+": "+ str(e)+"\n")
 		if concatenatedContent != "":
 			importData('concatenated texts', 'txt', concatenatedContent)
 

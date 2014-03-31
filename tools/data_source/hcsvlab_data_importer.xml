@@ -1,12 +1,12 @@
-<tool id="hcsvlab_data_importer" name="HCSVLAB Data Importer" version="0.01" force_history_refresh="True">
-<description>Import documents and metadata from the HCS vLab</description>
+<tool id="alveo_data_importer" name="Alveo Data Importer" version="0.01" force_history_refresh="True">
+<description>Import documents and metadata from the Alveo</description>
 <command interpreter="python">
             hcsvlab_data_importer.py '$job_name' '$output1' '$output1.id' $__new_file_path__ '$item_list' '$api_key' '$importTypes' '$metadata' '$concat'
-            </command>
+</command>
 <inputs>
-<param name="item_list" type="text" size="70" label="Item List URL" help="Specify the item list URL from HCS vLab"/>
-<param name="api_key" type="text" size="30" label="API Key" help="Your HCS vLab API key"/>
-<param name="job_name" type="text" size="25" label="Supply a name for the outputs to remind you what they contain" value="HCSVLAB Data"/>
+<param name="item_list" type="text" size="70" label="Item List URL" help="Specify the item list URL from Alveo"/>
+<param name="api_key" type="text" size="30" label="API Key" help="Your Alveo API key"/>
+<param name="job_name" type="text" size="25" label="Supply a name for the outputs to remind you what they contain" value="Alveo Data"/>
 <param name="importTypes" type="select" label="Import document types" display="checkboxes" multiple="true">
 	<option selected="True" value="Text"/>
 	<option selected="True" value="Image"/>
@@ -25,7 +25,7 @@
 <help>
 <![CDATA[   
 
-Import documents and metadata from the HCS vLab
+Import documents and metadata from Alveo
 
 ]]>
 
