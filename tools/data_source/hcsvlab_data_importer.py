@@ -24,6 +24,8 @@ def api_request(url):
 	curl.setopt(curl.URL, url)
 	curl.setopt(pycurl.HTTPHEADER, ['X-API-KEY: ' + api_key, 'Accept: application/json'])
 	curl.setopt(curl.WRITEFUNCTION, buf.write)
+	# Ignore SSL verification to bypass unsigned certificate, should look at improving this hack
+	curl.setopt(curl.SSL_VERIFYPEER, 0)
 	curl.perform()
 	response = buf.getvalue()
 	status = curl.getinfo(pycurl.HTTP_CODE)	
