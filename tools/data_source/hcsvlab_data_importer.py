@@ -132,7 +132,7 @@ try:
 		concatenatedContent =""
 		for textItem in concatenateList:
 			try:
-				status, content = api_request( url=(textItem['url']).encode('ascii','ignore'))
+				status, content = api_request( url=(textItem['alveo:url']).encode('ascii','ignore'))
 				concatenatedContent = concatenatedContent +"\n\n"+str(content)
 			except Exception, e:
 				log.write("!! Error importing document "+str(textItem['alveo:url'])+": "+ str(e)+"\n")
