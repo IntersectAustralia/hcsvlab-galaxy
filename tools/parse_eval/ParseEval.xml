@@ -21,7 +21,7 @@
 		<param name="types" type="integer" size="10" value="2" label="Number of different word types" help="Must be either 2 for bi-consonantal clusters or 3 for tri-consonantal clusters">
 			<validator type="in_range" min="2" max="3" message="Number of different word types must be either 2 or 3" />
 		</param>
-		<param name="words" type="integer" size="10" value="12" label="Number of words (stimuli) per word type" help="Must be divisible by the value of types above without a remainder" />
+		<param name="words" type="integer" size="10" value="12" label="Number of words (stimuli) for all word types" help="Must be divisible by the value of types above without a remainder" />
 		<param name="simN" type="integer" size="10" optional="true" label="Number of simulation runs over which hit rate is calculated" />
 		<param name="RE_rsd" type="float" size="10" value="0" label="Relative standard deviation of the right edge to anchor interval" />
 		<param name="CC_rsd" type="float" size="10" value="0" label="Relative standard deviation of the center to anchor interval" />
