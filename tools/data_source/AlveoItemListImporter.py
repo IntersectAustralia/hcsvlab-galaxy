@@ -22,10 +22,15 @@ def get_item_lists(api_key):
         pass
     return item_lists
 
+def write_table(item_lists, filename):
+    with open(filename, 'w') as outfile:
+        for list_set in item_lists.itervalues():
+            for item_list in list_set:
+                print item_list
+                outfile.write("%s (%d)\t%s\n" % (item_list['name'], item_list['num_items'], item_list['item_list_url']))
 
 if __name__ == '__main__':
     args = parser()
     item_lists = get_item_lists(args.api_key)
     if item_lists:
-        with open(args.output, 'w') as outfile:
-            json.dump(item_lists, outfile)
+        write_table(item_lists, args.output)

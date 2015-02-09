@@ -9,7 +9,7 @@
 </inputs>
 
 <outputs>
- <data format="json" name="item_list" label="${job_name}"/>
+ <data format="tabular" name="item_list" label="${job_name}"/>
 </outputs>
 <options refresh="True"/>
 <help>
