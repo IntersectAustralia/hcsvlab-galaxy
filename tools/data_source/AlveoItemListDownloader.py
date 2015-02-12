@@ -12,7 +12,6 @@ def parser():
     the_parser.add_argument('--item_list_url', required=True, action="store", type=str, help="Item List to download")
     the_parser.add_argument('--doc_types', required=True, action="store", type=str, help="Item types download")
     the_parser.add_argument('--output_path', required=True, action="store", type=str, help="Output path")
-    the_parser.add_argument('--output_id', required=True, action="store", type=str, help="Output ID")
     return the_parser.parse_args()
 
 
@@ -28,10 +27,9 @@ def filter_documents_by_type(item_list, doc_types):
         filtered_documents.extend([doc for doc in documents if doc.doc_metadata['dc:type'] in doc_types])
     return filtered_documents
 
-def download_documents(documents, output_path, output_id):
+def download_documents(documents, output_path):
     for document in documents:
-        basename, ext = document.get_filename().split('.')
-        output_path = 'alveo'
+        # output_path = 'alveo'
         if not os.path.exists(output_path):
             os.makedirs(output_path)
         document.download_content(output_path)
@@ -42,7 +40,7 @@ def main():
         item_list = get_item_list(args.api_key, args.item_list_url) 
         doc_types = args.doc_types.split(',')
         documents = filter_documents_by_type(item_list, doc_types)
-        download_documents(documents, args.output_path, args.output_id)
+        download_documents(documents, args.output_path)
     except pyalveo.APIError as e:
         # log.write("ERROR: "+str(e)+"\n")
         pass
