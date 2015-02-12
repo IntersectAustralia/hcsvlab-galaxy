@@ -46,6 +46,7 @@ def importData(prefix, ext, data):
 	try:
 		prefix = prefix.replace("_", "-")
 		newFile = "%s/primary_%s_%s_visible_%s" % (fileDir, logFileID, prefix, ext)
+		print newFile
 		target = open (newFile, 'w')
 		target.write(str(data))
 		target.close()

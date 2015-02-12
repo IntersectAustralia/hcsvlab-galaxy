@@ -9,7 +9,9 @@ def parser():
     the_parser = argparse.ArgumentParser(description="retrieve a Alveo itemlists")
     the_parser.add_argument('--api_key', required=True, action="store", type=str, help="Alveo API key")
     the_parser.add_argument('--item_list_url', required=True, action="store", type=str, help="Item List to download")
-    the_parser.add_argument('--doc_types', required=True, action="store", type=str, nargs="+", help="Item types download")
+    the_parser.add_argument('--doc_types', required=True, action="store", type=str, help="Item types download")
+    the_parser.add_argument('--output_path', required=True, action="store", type=str, help="Output path")
+    the_parser.add_argument('--output_id', required=True, action="store", type=str, help="Output ID")
     return the_parser.parse_args()
 
 
@@ -25,16 +27,19 @@ def filter_documents_by_type(item_list, doc_types):
         filtered_documents.extend([doc for doc in documents if doc.doc_metadata['dc:type'] in doc_types])
     return filtered_documents
 
-def download_documents(documents):
+def download_documents(documents, output_path, output_id):
     for document in documents:
-        document.download_content()
+        basename, ext = document.get_filename().split('.')
+        galaxy_file = "primary_%s_%s_visible_%s" % (output_id, basename, ext)
+        document.download_content(output_path, galaxy_file)
 
 def main():
     args = parser()
     try:
         item_list = get_item_list(args.api_key, args.item_list_url) 
-        documents = filter_documents_by_type(item_list, args.doc_types)
-        download_documents(documents)
+        doc_types = args.doc_types.split(',')
+        documents = filter_documents_by_type(item_list, doc_types)
+        download_documents(documents, args.output_path, args.output_id)
     except pyalveo.APIError as e:
         # log.write("ERROR: "+str(e)+"\n")
         pass

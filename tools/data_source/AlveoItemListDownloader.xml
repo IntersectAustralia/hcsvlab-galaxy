@@ -1,7 +1,7 @@
 <tool id="alveo_item_list_downloader" name="Alveo Item List Downloader" version="0.01" force_history_refresh="True">
     <description>Import documents and metadata from the Alveo</description>
     <command interpreter="python">
-        AlveoItemListDownloader.py --api_key $api_key --item_list_url $item_list_url --doc_types $doc_types
+        AlveoItemListDownloader.py --api_key $api_key --item_list_url $item_list_url --doc_types $doc_types --output_path "${__new_file_path__}" --output_id $output1.id
     </command>
     <inputs>
         <param name="api_key" type="text" size="30" label="API Key" help="Your Alveo API key"/>
