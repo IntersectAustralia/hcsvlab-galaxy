@@ -1,6 +1,7 @@
 import json
 import argparse
 import pyalveo
+import os
 
 API_URL = 'https://app.alveo.edu.au'
 
@@ -30,8 +31,10 @@ def filter_documents_by_type(item_list, doc_types):
 def download_documents(documents, output_path, output_id):
     for document in documents:
         basename, ext = document.get_filename().split('.')
-        galaxy_file = "primary_%s_%s_visible_%s" % (output_id, basename, ext)
-        document.download_content(output_path, galaxy_file)
+        output_path = 'alveo'
+        if not os.path.exists(output_path):
+            os.makedirs(output_path)
+        document.download_content(output_path)
 
 def main():
     args = parser()

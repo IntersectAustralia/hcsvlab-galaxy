@@ -23,13 +23,14 @@
         </param>
         <param name="metadata" type="boolean" checked="no" label="Import metadata"/>
         <param name="job_name" type="text" size="25"
-               label="Supply a name for the outputs to remind you what they contain" value="Alveo Item Lists"/>
+               label="Supply a name for the outputs to remind you what they contain" value="Item Lists downloaded from Alveo"/>
     </inputs>
 
     <outputs>
-        <data format="data" name="output1" label="${job_name}"/>
+        <data format="data" name="output1">
+            <discover_datasets pattern="__designation_and_ext__" directory="alveo" visible="true" />
+        </data>
     </outputs>
-    <options refresh="True"/>
     <help>
         <![CDATA[
 
