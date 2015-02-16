@@ -1,5 +1,5 @@
-<tool id="alveo_api_key_storer" name="Alveo API Key Storere" version="0.01" force_history_refresh="True">
-    <description>Import documents and metadata from the Alveo</description>
+<tool id="alveo_api_key_storer" name="Alveo API Key Storer" version="0.01" force_history_refresh="True">
+    <description>Persists Alveo API keys for use with the Alveo Galaxy tools</description>
     <command interpreter="python">
         AlveoAPIKey.py --api_key $api_key --output_path alveo_key
     </command>
@@ -13,7 +13,9 @@
 
     <help>
         <![CDATA[
-            Store your Alveo API key to use with Alveo Galaxy tools.
+
+            Persists Alveo API keys for use with the Alveo Galaxy tools.
+            
         ]]>
     </help>
 </tool>
