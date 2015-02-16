@@ -1,18 +1,20 @@
+from __future__ import print_function
 import json
 import argparse
 import pyalveo
 import os
 
+
 API_URL = 'https://app.alveo.edu.au'
 
 
 def parser():
-    the_parser = argparse.ArgumentParser(description="retrieve a Alveo itemlists")
-    the_parser.add_argument('--api_key', required=True, action="store", type=str, help="Alveo API key")
-    the_parser.add_argument('--item_list_url', required=True, action="store", type=str, help="Item List to download")
-    the_parser.add_argument('--doc_types', required=True, action="store", type=str, help="Item types download")
-    the_parser.add_argument('--output_path', required=True, action="store", type=str, help="Output path")
-    return the_parser.parse_args()
+    parser = argparse.ArgumentParser(description="Downloads documents in an Alveo Item List")
+    parser.add_argument('--api_key', required=True, action="store", type=str, help="Alveo API key")
+    parser.add_argument('--item_list_url', required=True, action="store", type=str, help="Item List to download")
+    parser.add_argument('--doc_types', required=True, action="store", type=str, help="Item types to download")
+    parser.add_argument('--output_path', required=True, action="store", type=str, help="Path to output file")
+    return parser.parse_args()
 
 
 def get_item_list(api_key, item_list_url):
@@ -29,7 +31,6 @@ def filter_documents_by_type(item_list, doc_types):
 
 def download_documents(documents, output_path):
     for document in documents:
-        # output_path = 'alveo'
         if not os.path.exists(output_path):
             os.makedirs(output_path)
         document.download_content(output_path)
@@ -42,8 +43,8 @@ def main():
         documents = filter_documents_by_type(item_list, doc_types)
         download_documents(documents, args.output_path)
     except pyalveo.APIError as e:
-        # log.write("ERROR: "+str(e)+"\n")
-        pass
+        print("ERROR: " + str(e), file=sys.stderr)
+        sys.exit(1)
 
 if __name__ == '__main__':
     main()
