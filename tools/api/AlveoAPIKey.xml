@@ -10,7 +10,7 @@
     </inputs>
 
     <outputs>
-        <data format="txt" name="output"/>
+        <data format="txt" name="output" label="Alveo API key" />
     </outputs>
 
     <help>

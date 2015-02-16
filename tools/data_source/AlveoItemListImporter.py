@@ -2,7 +2,7 @@ from __future__ import print_function
 import json
 import argparse
 import pyalveo
-
+import sys
 
 API_URL = 'https://app.alveo.edu.au'
 
@@ -27,7 +27,8 @@ def write_table(item_lists, filename):
 def main():
     args = parser()
     try:
-        item_lists = get_item_lists(args.api_key)
+        api_key = open(args.api_key, 'r').read()
+        item_lists = get_item_lists(api_key)
         if item_lists:
             write_table(item_lists, args.output)
     except pyalveo.APIError as e:

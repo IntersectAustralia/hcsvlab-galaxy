@@ -4,9 +4,9 @@
     <command interpreter="python">
         AlveoItemListDownloader.py --api_key $api_key --item_list_url $item_list_url --doc_types $doc_types --output_path alveo
     </command>
-    
+
     <inputs>
-        <param name="api_key" type="text" size="30" label="API Key" help="Your Alveo API key"/>
+        <param name="api_key" type="data" format="txt" label="API Key" help="Your Alveo API key"/>
         <param name="import_list" type="data" format="tabular" label="Imported Alveo Item List" help=""/>
 
         <param name="item_list_url" type="select" label="Alveo Item List" help="The Alveo Item List you wish to import">
@@ -29,12 +29,12 @@
     </inputs>
 
     <outputs>
-        <data format="data" name="output1"> 
-            <discover_datasets pattern="__designation_and_ext__" directory="alveo" visible="true" />
-        </data>
-<!--         <collection type="list" label="Test" name="output1">
-            <discover_datasets pattern="__designation_and_ext__" directory="alveo" visible="True" />
-        </collection> -->
+<!--         <data format="data" name="output1"> 
+            <discover_datasets pattern="__name_and_ext__" directory="alveo" />
+        </data> -->
+        <collection type="list" label="Test" name="output1">
+            <discover_datasets pattern="__name_and_ext__" directory="alveo" />
+        </collection>
     </outputs>
 
     <help>

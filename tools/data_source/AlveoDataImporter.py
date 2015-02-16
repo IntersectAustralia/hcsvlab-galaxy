@@ -1,150 +1,50 @@
-import sys
-import os
-import pycurl
-import cStringIO
+from __future__ import print_function
 import json
+import argparse
+import pyalveo
+import os
 
-numFiles = sys.argv[1]
-logFile = sys.argv[2]
-logFileID = sys.argv[3]
-fileDir = sys.argv[4]
-itemListURI = sys.argv[5]
-api_key = sys.argv[6]
-selectedTypes = sys.argv[7]
-importMetadata = sys.argv[8]
-concatenate = sys.argv[9]	
 
-#tallies of import successes/fails for logging
-importSuccessCount=0
-importFailCount=0
+API_URL = 'https://app.alveo.edu.au'
 
-def api_request(url):
-	curl = pycurl.Curl()
-	buf = cStringIO.StringIO()
-	curl.setopt(curl.URL, url)
-	curl.setopt(pycurl.HTTPHEADER, ['X-API-KEY: ' + api_key, 'Accept: application/json'])
-	curl.setopt(curl.WRITEFUNCTION, buf.write)
-	# Ignore SSL verification to bypass unsigned certificate, should look at improving this hack
-	curl.setopt(curl.SSL_VERIFYPEER, 0)
-	curl.perform()
-	response = buf.getvalue()
-	status = curl.getinfo(pycurl.HTTP_CODE)	
-	if status == 200:
-		return status, response
-	else:
-		raise Exception("api response ( "+str(status)+"): "+str(response)+"\n")
 
-def get_json(url):
-	try: 
-		status, string = api_request(url)
-		response = json.loads(string)
-		return response
-	except:
-		raise		
+def parser():
+    parser = argparse.ArgumentParser(description="Downloads documents in an Alveo Item List")
+    parser.add_argument('--api_key', required=True, action="store", type=str, help="Alveo API key")
+    parser.add_argument('--item_list_url', required=True, action="store", type=str, help="Item List to download")
+    parser.add_argument('--doc_types', required=True, action="store", type=str, help="Item types to download")
+    parser.add_argument('--output_path', required=True, action="store", type=str, help="Path to output file")
+    return parser.parse_args()
 
-def importData(prefix, ext, data):
-	try:
-		prefix = prefix.replace("_", "-")
-		newFile = "%s/primary_%s_%s_visible_%s" % (fileDir, logFileID, prefix, ext)
-		print newFile
-		target = open (newFile, 'w')
-		target.write(str(data))
-		target.close()
-		global importSuccessCount
-		importSuccessCount +=1
-	except Exception,e:
-		#do not exit if a document could not be imported. Just log the details.
-		log.write("!! Error saving document "+prefix+"."+ext+": "+ str(e))
-		global importFailCount
-		importFailCount += 1
 
-def importDocument(document):
-	docURL = document['alveo:url']
-	listURL = docURL.split("/")
-	docName= listURL[-1]
-	docPrefix = docName.split(".")[0]
-	docExt = docName.split(".")[-1]
-	try:
-		status, content = api_request( url=(docURL).encode('ascii','ignore'))
-		importData(docPrefix, docExt, content)
-	except Exception,e:
-		#do not exit if a document could not be imported. Just log the details.
-		log.write("!! Error importing document "+docURL+": "+ str(e))
-		global importFailCount
-		importFailCount += 1
+def get_item_list(api_key, item_list_url):
+    client = pyalveo.Client(api_key=api_key, api_url=API_URL)
+    return client.get_item_list(item_list_url)
 
-documentsList =[]
-concatenateList =[]
-metadataList =[]
+def filter_documents_by_type(item_list, doc_types):
+    items = item_list.get_all()
+    filtered_documents = []
+    for item in items:
+        documents = item.get_documents()
+        filtered_documents.extend([doc for doc in documents if doc.doc_metadata['dc:type'] in doc_types])
+    return filtered_documents
 
-log = open (logFile, 'a')
-log.write("Alveo Import Tool.\n\n")
-log.write("User input parameters are as follows: \n")
-log.write("\t Item List URI: "+itemListURI+"\n")
-log.write("\t API-KEY: "+api_key+"\n")
-log.write("\t Job Name: "+logFile+"\n")
-log.write("\t Import File Types: "+selectedTypes+"\n")
-log.write("\t Import Metadata: "+importMetadata+"\n")
-log.write("\t Concatenate Text Files: "+concatenate+"\n\n")
+def download_documents(documents, output_path):
+    for document in documents:
+        if not os.path.exists(output_path):
+            os.makedirs(output_path)
+        document.download_content(output_path)
 
-try:
-	itemListResponse = get_json(url=itemListURI)
+def main():
+    args = parser()
+    try:
+        item_list = get_item_list(args.api_key, args.item_list_url) 
+        doc_types = args.doc_types.split(',')
+        documents = filter_documents_by_type(item_list, doc_types)
+        download_documents(documents, args.output_path)
+    except pyalveo.APIError as e:
+        print("ERROR: " + str(e), file=sys.stderr)
+        sys.exit(1)
 
-	#get items
-	itemURIs = itemListResponse['items']
-	log.write("This item list contains "+str(len(itemURIs))+" items.\n\n")
-
-	for itemURI in itemURIs:
-		try:
-			log.write("ITEM: " +str(itemURI) + "\n")
-			itemResponse =  get_json(url=(itemURI).encode('ascii','ignore'))
-			itemName = (str(itemURI)).split("/")[-1]
-
-			#collect the documents/metadata to import
-			if importMetadata == "true":
-				content = itemResponse['alveo:metadata']
-				log.write("---- metadata document: "+(str(content))[:100]+"...\n")
-				metadataItem = {'name':itemName }
-				metadataItem['content'] = content
-				metadataList.append(metadataItem)
-			if concatenate == "true" and (str(itemResponse['alveo:primary_text_url']) != "No primary text found"):
-				indexableItem = {'name':itemName}
-				indexableItem['alveo:url'] = itemResponse['alveo:primary_text_url']
-				concatenateList.append(indexableItem)
-			docs = itemResponse['alveo:documents']
-			for doc in docs:
-				if doc['dc:type'] in selectedTypes:
-					log.write("---- document: "+str(doc['alveo:url'])+"\n")
-					if (concatenate == "false" or doc['dc:type'] != "Text"):
-						documentsList.append(doc)
-		except Exception,e:
-			#do not exit if a document could not be imported. Just log the details.
-			log.write("!! Error importing item "+itemURI+": "+ str(e))
-			importFailCount += 1
-	log.write("\n\n")				
-
-	#perform imports
-	for document in documentsList:
-		importDocument(document)
-	for metadataItem in metadataList:
-		content = json.dumps(metadataItem['content'], indent=4)
-		importData(metadataItem['name']+' metadata-document', 'txt', content)
-	if concatenate=="true":
-		concatenatedContent =""
-		for textItem in concatenateList:
-			try:
-				status, content = api_request( url=(textItem['alveo:url']).encode('ascii','ignore'))
-				concatenatedContent = concatenatedContent +"\n\n"+str(content)
-			except Exception, e:
-				log.write("!! Error importing document "+str(textItem['alveo:url'])+": "+ str(e)+"\n")
-		if concatenatedContent != "":
-			importData('concatenated texts', 'txt', concatenatedContent)
-
-	#log the results
-	log.write(str(importSuccessCount)+" document(s) were successfully imported.\n")
-	log.write(str(importFailCount)+" document(s) could not be imported due to errors.\n")
-	log.close()
-
-except Exception,e:
-    log.write("ERROR: "+str(e)+"\n")
-    raise
+if __name__ == '__main__':
+    main()

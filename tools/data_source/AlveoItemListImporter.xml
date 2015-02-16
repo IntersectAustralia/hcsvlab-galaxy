@@ -6,7 +6,7 @@
     </command>
 
     <inputs>
-        <param name="api_key" type="text" size="30" label="API Key" help="Your Alveo API key"/>
+        <param name="api_key" type="data" format="txt" label="API Key" help="Your Alveo API key"/>
         <param name="job_name" type="text" size="25"
                label="Supply a name for the outputs to remind you what they contain" value="Alveo Item Lists"/>
     </inputs>

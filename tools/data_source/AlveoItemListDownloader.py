@@ -2,6 +2,7 @@ from __future__ import print_function
 import json
 import argparse
 import pyalveo
+import sys
 import os
 
 
@@ -38,7 +39,8 @@ def download_documents(documents, output_path):
 def main():
     args = parser()
     try:
-        item_list = get_item_list(args.api_key, args.item_list_url) 
+        api_key = open(args.api_key, 'r').read()
+        item_list = get_item_list(api_key, args.item_list_url) 
         doc_types = args.doc_types.split(',')
         documents = filter_documents_by_type(item_list, doc_types)
         download_documents(documents, args.output_path)
