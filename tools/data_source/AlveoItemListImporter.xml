@@ -1,24 +1,26 @@
 <tool id="alveo_item_list_importer" name="Alveo Item List Importer" version="0.01" force_history_refresh="True">
-<description>Import documents and metadata from the Alveo</description>
-<command interpreter="python">
-            AlveoItemListImporter.py --api_key $api_key --output $item_list
-</command>
-<inputs>
-<param name="api_key" type="text" size="30" label="API Key" help="Your Alveo API key"/>
-    <param name="job_name" type="text" size ="25" label="Supply a name for the outputs to remind you what they contain" value="Alveo Item Lists"/>
-</inputs>
+    <description>Imports Item Lists from Alveo</description>
 
-<outputs>
- <data format="tabular" name="item_list" label="${job_name}"/>
-</outputs>
-<options refresh="True"/>
-<help>
-<![CDATA[   
+    <command interpreter="python">
+        AlveoItemListImporter.py --api_key $api_key --output $item_list
+    </command>
 
-Import Item Lists from Alveo
+    <inputs>
+        <param name="api_key" type="text" size="30" label="API Key" help="Your Alveo API key"/>
+        <param name="job_name" type="text" size="25"
+               label="Supply a name for the outputs to remind you what they contain" value="Alveo Item Lists"/>
+    </inputs>
 
-]]>
+    <outputs>
+        <data format="tabular" name="item_list" label="${job_name}"/>
+    </outputs>
 
-</help>
+    <help>
+        <![CDATA[
+
+        Import Item Lists from Alveo. This imports the lists, but does not download the individual items. That task is performed by the "Alveo Item List Downloader" tool.
+
+        ]]>
+    </help>
 </tool>
 
