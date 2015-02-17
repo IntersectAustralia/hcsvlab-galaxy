@@ -11,18 +11,19 @@ def parser():
     parser.add_argument('--output_path', required=True, action="store", type=str, help="File to store the API key in")
     return parser.parse_args()
 
+def write_key(api_key, output_path, client_module=pyalveo):
+    client = client_module.Client(api_key, API_URL)
+    outfile = open(output_path, 'w')
+    outfile.write(api_key)
+    outfile.close()
 
 def main():
     args = parser()
     try:
-        client = pyalveo.Client(api_key=args.api_key, api_url=API_URL)
-        outfile = open(args.output_path, 'w')
-        outfile.write(args.api_key)
-        outfile.close()
-    except pyalveo.APIError as e:
+        write_key(args.api_key, args.output_path)
+    except Exception as e:
         print("ERROR: " + str(e), file=sys.stderr)
         sys.exit(1)
-
 
 if __name__ == '__main__':
     main()

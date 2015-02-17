@@ -2,7 +2,7 @@
     <description>Persists Alveo API keys for use with the Alveo Galaxy tools</description>
 
     <command interpreter="python">
-        AlveoAPIKey.py --api_key $api_key --output_path $output
+        alveo_api_key.py --api_key $api_key --output_path $output
     </command>
 
     <inputs>
@@ -12,6 +12,13 @@
     <outputs>
         <data format="txt" name="output" label="Alveo API key" />
     </outputs>
+
+    <tests>
+        <test>
+            <param name="api_key" value="test123" />
+            <output name="output" file="output" compare="contains" />
+        </test>
+    </tests>
 
     <help>
         <![CDATA[
