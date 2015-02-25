@@ -2,7 +2,7 @@
     <description>Imports Item Lists from Alveo</description>
 
     <command interpreter="python">
-        AlveoItemListImporter.py --api_key $api_key --output $item_list
+        alveo_item_list_importer.py --api_key $api_key --output $item_list
     </command>
 
     <inputs>

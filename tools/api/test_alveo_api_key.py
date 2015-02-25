@@ -10,7 +10,7 @@ class TestAlveoAPIKey(unittest.TestCase):
   API_KEY = 'test123'
   MOCK_CLIENT = Mock(pyalveo)
 
-  def test_success(self):
+  def test_write_key(self):
     alveo_api_key.write_key(self.API_KEY, self.OUTPUT_PATH, self.MOCK_CLIENT)
     actual = open(self.OUTPUT_PATH, 'r').read()
     self.assertEqual(self.API_KEY, actual)

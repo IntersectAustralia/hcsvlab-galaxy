@@ -2,7 +2,7 @@
     <description>Downloads the items in Alveo Item Lists</description>
 
     <command interpreter="python">
-        AlveoItemListDownloader.py --api_key $api_key --item_list_url $item_list_url --doc_types $doc_types --output_path alveo
+        alveo_item_list_downloader.py --api_key $api_key --item_list_url $item_list_url --doc_types $doc_types --output_path alveo
     </command>
 
     <inputs>

@@ -31,7 +31,7 @@ def main():
         item_lists = get_item_lists(api_key)
         if item_lists:
             write_table(item_lists, args.output)
-    except pyalveo.APIError as e:
+    except Exception as e:
         print("ERROR: " + str(e), file=sys.stderr)
         sys.exit(1)
     
