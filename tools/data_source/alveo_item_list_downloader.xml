@@ -29,9 +29,6 @@
     </inputs>
 
     <outputs>
-<!--         <data format="data" name="output1"> 
-            <discover_datasets pattern="__name_and_ext__" directory="alveo" />
-        </data> -->
         <collection type="list" label="Test" name="output1">
             <discover_datasets pattern="__name_and_ext__" directory="alveo" />
         </collection>
