@@ -12,6 +12,21 @@ def parser():
     return parser.parse_args()
 
 def write_key(api_key, output_path, client_module=pyalveo):
+    """Tests whether an API key is valid and writes it to a file.
+
+    :type api_key: String
+    :param api_key: Alveo API key
+
+    :type output_path: String
+    :param output_path: Path to the file to store the API key in
+
+    :type client_module: pyalveo.Client
+    :param client_module: Module providing the client (used for testing purposes),
+        defaults to pyalveo
+
+    :raises: pyalveo.APIError if the API request is not successful
+
+    """
     client = client_module.Client(api_key, API_URL)
     outfile = open(output_path, 'w')
     outfile.write(api_key)
