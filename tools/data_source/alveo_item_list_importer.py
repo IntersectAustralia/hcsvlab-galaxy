@@ -4,7 +4,7 @@ import argparse
 import pyalveo
 import sys
 
-API_URL = 'https://app.alveo.edu.au'
+API_URL = 'https://app.alveo.edu.au' # TODO: export constants to a separate module
 
 
 def parser():
@@ -13,7 +13,7 @@ def parser():
     parser.add_argument('--output', required=True, action="store", type=str, help="Path to output file")
     return parser.parse_args()
 
-
+# TODO: export common function to helper module
 def get_item_lists(api_key):
     client = pyalveo.Client(api_key=api_key, api_url=API_URL)
     return client.get_item_lists()

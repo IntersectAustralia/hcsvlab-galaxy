@@ -19,6 +19,7 @@ def get_item_list(api_key, item_list_url):
     client = pyalveo.Client(api_key=api_key, api_url=API_URL)
     return client.get_item_list(item_list_url)
 
+# TODO: export common function to helper module
 def filter_documents_by_type(item_list, doc_types):
     """Filters and Item List to the specified document types.
 
@@ -36,6 +37,7 @@ def filter_documents_by_type(item_list, doc_types):
         filtered_documents.extend([doc for doc in documents if doc.doc_metadata['dc:type'] in doc_types])
     return filtered_documents
 
+# TODO: export common function to helper module
 def download_documents(documents, output_path):
     """
     Downloads a list of documents to the directory specificed by output_path.

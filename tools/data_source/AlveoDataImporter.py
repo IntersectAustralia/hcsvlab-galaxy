@@ -16,11 +16,12 @@ def parser():
     parser.add_argument('--output_path', required=True, action="store", type=str, help="Path to output file")
     return parser.parse_args()
 
-
+# TODO: export common function to helper module
 def get_item_list(api_key, item_list_url):
     client = pyalveo.Client(api_key=api_key, api_url=API_URL)
     return client.get_item_list(item_list_url)
 
+# TODO: export common function to helper module
 def filter_documents_by_type(item_list, doc_types):
     items = item_list.get_all()
     filtered_documents = []
@@ -29,6 +30,7 @@ def filter_documents_by_type(item_list, doc_types):
         filtered_documents.extend([doc for doc in documents if doc.doc_metadata['dc:type'] in doc_types])
     return filtered_documents
 
+# TODO: export common function to helper module
 def download_documents(documents, output_path):
     for document in documents:
         if not os.path.exists(output_path):
