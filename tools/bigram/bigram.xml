@@ -1,0 +1,33 @@
+<tool id="simple_bigram_count" name="Simple Bigram Count" version="0.01" >
+    <description>A basic bigram counting tool for text files</description>
+
+    <command interpreter="bash">
+        bigram.sh $input $output
+    </command>
+
+    <inputs>
+        <param name="input" type="data" format="txt" label="Input text file"/>
+    </inputs>
+
+    <outputs>
+        <data format="tabular" name="output" />
+    </outputs>
+
+    <help>
+        <![CDATA[
+
+        Takes a plain text file as input and outputs a tab-separated table of
+        two-word sequences preceded by their count.
+
+
+        ]]>
+    </help>
+
+    <tests>
+      <test>
+        <param name="input" value="cat.txt" />
+        <output name="output" file="expected.txt" />
+      </test>
+    </tests>
+
+</tool>

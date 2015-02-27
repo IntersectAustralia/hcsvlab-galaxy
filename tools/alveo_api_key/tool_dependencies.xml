@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<tool_dependency>
+   <package name="pyalveo" version="0.4">
+       <repository name="pyalveo_0_4" owner="admin" />
+   </package>
+</tool_dependency>
