@@ -1,7 +1,7 @@
 <tool id="alveo_data_importer" name="Alveo Data Importer" version="0.01" force_history_refresh="True">
 <description>Import documents and metadata from the Alveo</description>
 <command interpreter="python">
-            hcsvlab_data_importer.py '$job_name' '$output1' '$output1.id' $__new_file_path__ '$item_list' '$api_key' '$importTypes' '$metadata' '$concat'
+            AlveoDataImporter.py --api_key $api_key --item_list_url $item_list_url --doc_types $doc_types --output_path alveo
 </command>
 <inputs>
 <param name="item_list" type="text" size="70" label="Item List URL" help="Specify the item list URL from Alveo"/>
