@@ -1,11 +1,11 @@
-<tool id="xle-web" name="XLE-Web" version="0.01">
+<tool id="xle_web" name="XLE-Web" version="0.01">
 	<description>Takes a text input and generates an interface with INESS XLE-Web tool</description>
 	<command interpreter="python">
-		xle-web.py $input1 '$grammar' $html_file
+		xle_web.py $input1 '$grammar' $html_file
 	</command>
 
 	<inputs>
-		<param name="input1"  type="data" format="txt" label="Select a suitable input file from your history"/> 
+		<param name="input1"  type="data" format="txt" label="Select a suitable input file from your history"/>
 		<param name="job_name" type="text" size ="25" label="Supply a name for the outputs to remind you what they contain" value="ParGram"/>
         <param name="grammar" type="select" label="Grammar" multiple="false">
             <option selected="False" value="Abkhaz"/>
@@ -30,8 +30,20 @@
 	<outputs>
 		<data format="html" name="html_file" label="${job_name}"/>
 	</outputs>
+	 <tests>
+    <test>
+      <param name="input1" value="in.txt"/>
+      <param name="grammar" value="English"/>
+      <output name="out_file1" file="out1.html"/>
+    </test>
+    <test>
+      <param name="input1" value="in.txt"/>
+      <param name="grammar" value="Norwegian Bokm__aring__l"/>
+      <output name="out_file1" file="out2.html"/>
+    </test>
+  </tests>
 	<help>
-		<![CDATA[   
+		<![CDATA[
 
 		Provides an interface to INESS XLE-Web tool.
 

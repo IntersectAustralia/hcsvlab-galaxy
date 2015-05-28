@@ -5,14 +5,15 @@ import sys
 # Define constants
 XLE_WEB_URL = "http://clarino.uib.no/iness/xle-web"
 
+# def __main__():
 # Read arguments
 inp = sys.argv[1]
 grammar = sys.argv[2]
-text = open(inp,'r').read()
+text = open(inp, 'r').read()
 
 outp = sys.argv[3]
 
-# Define Indinesian as pre-selected grammar
+# Define Indonesian as pre-selected grammar
 data="""
     <div width='100%' height='100%'>
         <iframe name='xle-web-frame' src='' width='100%' height='100%' frameborder='0'></iframe>
@@ -39,3 +40,5 @@ data = data.replace('##_SENTENCE_##', text.replace('"', '&quot;'))
 o = open(outp,'w')
 o.write(data)
 o.close()
+
+# if __name__=="__main__": __main__()
