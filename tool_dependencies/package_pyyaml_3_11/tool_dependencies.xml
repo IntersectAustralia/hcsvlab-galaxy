@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="python" version="2.7">
+        <repositoryname="package_python_2_7" owner="iuc" prior_installation_required="True" />
+    </package>
+    <package name="python_pyyaml" version="3.11">
+        <install version="1.0">
+            <actions>
+                <action type="setup_python_environment">
+                   <repository name="package_python_2_7" owner="iuc" >
+                       <package name="python" version="2.7" />
+                   </repository>
+                    <!-- allow downloading and installing an Python package from https://pypi.org/ -->
+                    <package>https://pypi.python.org/packages/source/P/PyYAML/PyYAML-3.11.tar.gz#md5=f50e08ef0fe55178479d3a618efe21db</package>
+                </action>
+            </actions>
+        </install>
+        <readme>
+            YAML parser and emitter for Python
+        </readme>
+    </package>
+</tool_dependency>
