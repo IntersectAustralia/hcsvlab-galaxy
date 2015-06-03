@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <tool_dependency>
     <package name="python" version="2.7">
-        <repositoryname="package_python_2_7" owner="iuc" prior_installation_required="True" />
+        <repository name="package_python_2_7" owner="iuc" prior_installation_required="True" />
     </package>
     <package name="python_nltk" version="3.0.2">
         <install version="1.0">
@@ -20,7 +20,8 @@
                 <action type="set_environment">
                     <environment_variable action="prepend_to" name="PYTHONPATH">$INSTALL_DIR/lib/python</environment_variable>
                     <environment_variable action="prepend_to" name="PATH">$INSTALL_DIR/bin</environment_variable>
-                    <environment_variable action="set_to" name="NLTK_DATA">$INSTALL_DIR/nltk_data</environment_variable>
+                     <!-- Sets NLTK_DATA in runtime environment -->
+                   <environment_variable action="set_to" name="NLTK_DATA">$INSTALL_DIR/nltk_data</environment_variable>
                 </action>
             </actions>
         </install>
