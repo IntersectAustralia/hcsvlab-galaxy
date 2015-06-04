@@ -13,17 +13,15 @@ def Parser():
   args = the_parser.parse_args()
   return args
 
-
-
 # work
 def freq(inp, outp):
     """Input: a text file
     Output: a table of word frequency with three columns for Word, Count and Percent frequency
-    """    
+    """
     text = open(inp,'r').read()
-    
+
     words = nltk.word_tokenize(text)
-        
+
     freq = FreqDist(words)
     tot = float(freq.N())
 
@@ -39,7 +37,7 @@ def freq(inp, outp):
 if __name__=='__main__':
 
     args=Parser()
-    
+
     freq(args.input, args.output)
-    
-    
+
+

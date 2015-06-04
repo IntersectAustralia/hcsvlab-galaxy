@@ -1,7 +1,7 @@
 <tool id="Frequency" name="Frequency List" version="0.01">
     <description>Takes a text input and generates a frequency list</description>
     <command interpreter="python">
-        frequency.py --input $input1 --output $frequency_table
+        g_frequency.py --input $input1 --output $frequency_table
     </command>
     <inputs>
         <param name="input1" type="data" format="txt"
