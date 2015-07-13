@@ -48,10 +48,6 @@
 	    		stop("Number of words must be divisible by the number of types without a remainder")
 	    	}
 
-			require(lattice , quietly=T)
-			require(latticeExtra , quietly=T)
-			require(gridExtra , quietly=T)
-
 			args &lt;- commandArgs(trailingOnly = TRUE)
 	    	source(file.path(args[1], "tools/parse_eval/parseval.R"))
 
