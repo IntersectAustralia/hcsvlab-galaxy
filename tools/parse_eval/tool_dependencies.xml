@@ -9,11 +9,11 @@
     </package>
 
     <package name="R_latticeExtra" version="0.6.26">
-        <repository name="package_r_latticeExtra_0_6_26" owner="alveo" prior_installation_required="True"/>
+        <repository name="package_r_lattice_extra_0_6_26" owner="alveo" prior_installation_required="True"/>
     </package>
 
     <package name="R_gridExtra" version="0.9.1">
-        <repository name="package_r_gridExtra_0_9_1" owner="alveo" prior_installation_required="True"/>
+        <repository name="package_r_grid_extra_0_9_1" owner="alveo" prior_installation_required="True"/>
     </package>
 
 </tool_dependency>
