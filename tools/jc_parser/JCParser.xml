@@ -1,23 +1,23 @@
 <tool id="JCParser" name="Johnson-Charniak Parser" version="1.0.0">
-<description>Parse the sentence using JC Parser</description>
-<command interpreter="python">
-            JCParser.py $input1 $html_file $html_file.files_path
-            </command>
-<inputs>
-<param name="input1"  type="data" format="txt" label="Select a suitable input file from your history"/> 
-<param name="job_name" type="text" size="20" label="Supply a name for the outputs to remind you what they contain" value="JCParser"/> 
+	<description>Parse the sentence using JC Parser</description>
+	<command interpreter="python">
+  	JCParser.py $input1 $html_file $html_file.files_path
+  </command>
+	
+	<inputs>
+		<param name="input1"  type="data" format="txt" label="Select a suitable input file from your history"/> 
+		<param name="job_name" type="text" size="20" label="Supply a name for the outputs to remind you what they contain" value="JCParser"/>
+	</inputs>
+	<outputs>
+		<data format="html" name="html_file" label="${job_name}" />
+	</outputs>
 
-</inputs>
-<outputs>
-<data format="html" name="html_file" label="${job_name}" />
-</outputs>
-<options refresh="True"/>
-<help>
-<![CDATA[
+	<options refresh="True"/>
+	<help>
+	<![CDATA[
 
-Input is sentence segmented text. Run the J-C Parser over the text with default settings, output is a bracketed parse tree for the sentences.
+	Input is sentence segmented text. Run the J-C Parser over the text with default settings, output is a bracketed parse tree for the sentences.
 
-]]>
-
-</help>
+	]]>
+	</help>
 </tool>
