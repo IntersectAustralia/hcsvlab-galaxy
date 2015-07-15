@@ -6,6 +6,9 @@
     <package name="Flex" version="3.1.2">
         <repository name="package_flex_2_5_39" owner="alveo" prior_installation_required="True"/>
     </package>
+    <package name="python_nltk" version="3.0.2">
+        <repository name="package_nltk_3_0_2" owner="alveo" prior_installation_required="True"/>
+    </package>
    <package name="jc_parser" version="1.0">
        <install version="1.0">
           <actions>
