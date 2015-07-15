@@ -5,6 +5,10 @@
         alveo_item_list_importer.py --api_key $api_key --output $item_list
     </command>
 
+    <requirements>
+        <requirement type="package" version="0.4">pyalveo</requirement>
+    </requirements>
+
     <inputs>
         <param name="api_key" type="data" format="txt" label="API Key" help="Your Alveo API key"/>
         <param name="job_name" type="text" size="25"
