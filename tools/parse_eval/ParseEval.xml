@@ -2,7 +2,7 @@
 
 	<description>Analyse articulatory data</description>
 	<command interpreter="sh">
-		r_wrapper.sh $script_file $__root_dir__
+		r_wrapper.sh $script_file $__tool_directory__
 	</command>
 
     <requirements>
@@ -48,12 +48,8 @@
 	    		stop("Number of words must be divisible by the number of types without a remainder")
 	    	}
 
-			require(lattice , quietly=T)
-			require(latticeExtra , quietly=T)
-			require(gridExtra , quietly=T)
-
 			args &lt;- commandArgs(trailingOnly = TRUE)
-	    	source(file.path(args[1], "tools/parse_eval/parseval.R"))
+	    	source(file.path(args[1], "parseval.R"))
 
 	    	if(!file.exists("${html_file.files_path}")) {
 	    		dir.create("${html_file.files_path}")

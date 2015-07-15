@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <tool_dependency>
     <package name="python" version="2.7">
-        <repositoryname="package_python_2_7" owner="iuc" prior_installation_required="True" />
+        <repository name="package_python_2_7" owner="iuc" prior_installation_required="True" />
     </package>
     <package name="python_pyyaml" version="3.11">
         <install version="1.0">
