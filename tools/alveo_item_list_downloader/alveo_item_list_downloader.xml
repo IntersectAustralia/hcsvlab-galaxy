@@ -5,6 +5,10 @@
         alveo_item_list_downloader.py --api_key $api_key --item_list_url $item_list_url --doc_types $doc_types --output_path alveo
     </command>
 
+    <requirements>
+        <requirement type="package" version="0.4">pyalveo</requirement>
+    </requirements>
+
     <inputs>
         <param name="api_key" type="data" format="txt" label="API Key" help="Your Alveo API key"/>
         <param name="import_list" type="data" format="tabular" label="Imported Alveo Item List" help=""/>
