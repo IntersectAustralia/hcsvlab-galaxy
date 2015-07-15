@@ -18,4 +18,15 @@
           </actions>
       </install>
    </package>
+   <package name="jc_parser_nltk_wrapper" version="1.0">
+      <install version="1.0">
+          <actions>
+              <!-- install python-tk -->
+              <action type="shell_command">git clone git://github.com/IntersectAustralia/jcp-nltk-wrapper.git</action>
+              <action type="shell_command">sudo cp jcp-nltk-wrapper/parse/* /usr/local/lib/python2.7/dist-packages/nltk/parse</action>
+              <!-- <action type="shell_command"></action> -->
+              <!-- <action type="shell_command"></action> -->
+          </actions>
+      </install>
+   </package>
 </tool_dependency>
