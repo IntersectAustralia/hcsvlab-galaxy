@@ -4,6 +4,10 @@
   	JCParser.py $input1 $html_file $html_file.files_path
   </command>
 	
+  <requirements>
+  	<requirement type="package" version="2.5.39">Flex</requirement>
+  </requirements>
+
 	<inputs>
 		<param name="input1"  type="data" format="txt" label="Select a suitable input file from your history"/> 
 		<param name="job_name" type="text" size="20" label="Supply a name for the outputs to remind you what they contain" value="JCParser"/>
