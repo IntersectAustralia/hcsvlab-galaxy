@@ -4,8 +4,8 @@
        <install version="1.0">
           <actions>
           		<action type="download_by_url">https://github.com/IntersectAustralia/hcsvlab-galaxy/raw/hcsvlab-pyalveo/tools/jc_parser/alveo-reranking-parser-2011-12-17.tgz</action>
-          		<action type="shell_command">apt-get update</action>
-          		<action type="shell_command">apt-get install flex -y</action>
+          		<action type="shell_command">sudo apt-get update</action>
+          		<action type="shell_command">sudo apt-get install flex -y</action>
           		<action type="change_directory">reranking-parser</action>
           		<action type="shell_command">make</action>
           </actions>
