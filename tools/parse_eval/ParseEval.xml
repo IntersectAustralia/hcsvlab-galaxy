@@ -1,8 +1,17 @@
 <tool id="ParseEval" name="ParseEval" version="1.0.0">
+
 	<description>Analyse articulatory data</description>
 	<command interpreter="sh">
-		r_wrapper.sh $script_file $__root_dir__
+		r_wrapper.sh $script_file $__tool_directory__
 	</command>
+
+    <requirements>
+        <requirement type="set_environment">R_SCRIPT_PATH</requirement>
+        <requirement type="package" version="3.1.2">R</requirement>
+        <requirement type="package" version="0.20.31">R_lattice</requirement>
+        <requirement type="package" version="0.6.26">R_latticeExtra</requirement>
+        <requirement type="package" version="0.9.1">R_gridExtra</requirement>
+    </requirements>
 
 	<inputs>
 		<param name="c1a" type="float" size="10" value="0" label="Gestural plateau duration" help="Articulatory data for the immediate pre-vocalic consonant" />
@@ -32,8 +41,6 @@
 		<data format="html" name="html_file" label="${job_name}"/>
 	</outputs>
 
-	<options refresh="True"/>
-
 	<configfiles>
 	    <configfile name="script_file">
 
@@ -41,12 +48,8 @@
 	    		stop("Number of words must be divisible by the number of types without a remainder")
 	    	}
 
-			require(lattice , quietly=T)
-			require(latticeExtra , quietly=T)
-			require(gridExtra , quietly=T)
-
 			args &lt;- commandArgs(trailingOnly = TRUE)
-	    	source(file.path(args[1], "tools/parse_eval/parseval.R"))
+	    	source(file.path(args[1], "parseval.R"))
 
 	    	if(!file.exists("${html_file.files_path}")) {
 	    		dir.create("${html_file.files_path}")
@@ -61,7 +64,7 @@
 	    	}, error = function(e) {
 	    		stop("ParseEval produced an error with the given input parameters. Check the inputs to make sure they are correct.")
 	    	})
-			
+
 			sink()
 
 			write(paste("&lt;br /&gt;Type of Simulation: ", parse[[2]], sep=""), file="${html_file}", append=TRUE)
@@ -99,11 +102,13 @@
 	</configfiles>
 
 	<help>
-	<![CDATA[   
+	<![CDATA[
 
 	ParseEval is a function for assessing certain aspects of articulatory data in phonetic research. It is intended to be used to evaluate the fit between measurements taken from experimental data and measurements taken from simulated data generated under different syllable parses.
 
 	]]>
 
 	</help>
+
+
 </tool>

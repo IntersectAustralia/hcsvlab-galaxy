@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+  <tool_dependency>
+      <package name="R" version="3.1.2">
+          <repository name="package_r_3_1_2" owner="iuc" prior_installation_required="True"/>
+      </package>
+      <package name="R_lattice" version="0.20.31">
+          <install version="1.0">
+              <actions>
+                  <action type="setup_r_environment">
+                      <package>http://cran.ms.unimelb.edu.au/src/contrib/lattice_0.20-31.tar.gz</package>
+                  </action>
+              </actions>
+          </install>
+      </package>
+  </tool_dependency>

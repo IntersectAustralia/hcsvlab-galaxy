@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+  <tool_dependency>
+      <package name="R" version="3.1.2">
+          <repository name="package_r_3_1_2" owner="iuc" prior_installation_required="True"/>
+      </package>
+      <package name="R_gridExtra" version="0.9.1">
+          <install version="1.0">
+              <actions>
+                  <action type="setup_r_environment">
+                      <package>http://cran.ms.unimelb.edu.au/src/contrib/gridExtra_0.9.1.tar.gz</package>
+                  </action>
+              </actions>
+          </install>
+      </package>
+  </tool_dependency>

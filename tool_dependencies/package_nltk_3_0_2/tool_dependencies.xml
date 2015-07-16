@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="python" version="2.7">
+        <repository name="package_python_2_7" owner="iuc" prior_installation_required="True" />
+    </package>
+    <package name="python_nltk" version="3.0.2">
+        <install version="1.0">
+            <actions>
+                <action type="setup_python_environment">
+                   <repository name="package_python_2_7" owner="iuc" >
+                       <package name="python" version="2.7" />
+                   </repository>
+                    <!-- allow downloading and installing an Python package from https://pypi.org/ -->
+                    <package>https://pypi.python.org/packages/source/n/nltk/nltk-3.0.2.tar.gz#md5=022e3e19b17ddabc0026bf0c8ce62dcf</package>
+                </action>
+                <action type="shell_command">
+                    export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/lib/python &amp;&amp;
+                    python -m nltk.downloader -d $INSTALL_DIR/nltk_data all
+                </action>
+                <action type="set_environment">
+                    <environment_variable action="prepend_to" name="PYTHONPATH">$INSTALL_DIR/lib/python</environment_variable>
+                    <environment_variable action="prepend_to" name="PATH">$INSTALL_DIR/bin</environment_variable>
+                     <!-- Sets NLTK_DATA in runtime environment -->
+                   <environment_variable action="set_to" name="NLTK_DATA">$INSTALL_DIR/nltk_data</environment_variable>
+                </action>
+            </actions>
+        </install>
+        <readme>
+            The Natural Language Toolkit (NLTK) is a Python package for natural language processing.
+        </readme>
+    </package>
+</tool_dependency>
+

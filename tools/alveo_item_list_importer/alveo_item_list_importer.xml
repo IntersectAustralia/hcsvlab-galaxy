@@ -1,0 +1,30 @@
+<tool id="alveo_item_list_importer" name="Alveo Item List Importer" version="0.01" force_history_refresh="True">
+    <description>Imports Item Lists from Alveo</description>
+
+    <command interpreter="python">
+        alveo_item_list_importer.py --api_key $api_key --output $item_list
+    </command>
+
+    <requirements>
+        <requirement type="package" version="0.4">pyalveo</requirement>
+    </requirements>
+
+    <inputs>
+        <param name="api_key" type="data" format="txt" label="API Key" help="Your Alveo API key"/>
+        <param name="job_name" type="text" size="25"
+               label="Supply a name for the outputs to remind you what they contain" value="Alveo Item Lists"/>
+    </inputs>
+
+    <outputs>
+        <data format="tabular" name="item_list" label="${job_name}"/>
+    </outputs>
+
+    <help>
+        <![CDATA[
+
+        Import Item Lists from Alveo. This imports the lists, but does not download the individual items. That task is performed by the "Alveo Item List Downloader" tool.
+
+        ]]>
+    </help>
+</tool>
+

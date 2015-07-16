@@ -1,0 +1,8 @@
+2	cat	sat
+1	mat	on
+1	mat	the
+2	on	the
+1	sat	
+1	sat	on
+2	the	cat
+2	the	mat

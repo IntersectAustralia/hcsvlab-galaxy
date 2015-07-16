@@ -1,0 +1,29 @@
+<tool id="NER" name="Named Entity Recognition" version="0.01">
+    <description>Named Entity Recognition</description>
+    <command interpreter="python">
+        g_ner.py --input $input1 --output $nertags
+    </command>
+    <inputs>
+        <param name="input1" type="data" format="json"
+               label="Select a suitable input file from your history"/>
+
+        <param name="job_name" type="text" size="25"
+               label="Supply a name for the output to remind you what they contain"
+               value="NER Tags"/>
+    </inputs>
+    <outputs>
+        <data format="txt" name="nertags" label="${job_name}"/>
+    </outputs>
+
+    <tests>
+        <test>
+            <param name='input1' value='sample_text_pos.json'/>
+            <param name='job_name' value='testpos1'/>
+            <output name='tokens' file='sample_text_ner.txt'/>
+        </test>
+    </tests>
+    <help>
+        Apply a Named Entity Recogniser to a POS tagged text.
+    </help>
+
+</tool>
