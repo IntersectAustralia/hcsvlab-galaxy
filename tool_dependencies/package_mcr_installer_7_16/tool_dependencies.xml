@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<tool_dependency>
+		<package name="mcr_installer" version="7.16">
+				<install version="1.0">
+            <actions>
+                <action type="download_by_url">TODO: replace url</action>
+                <action type="shell_command">unzip MCRInstaller.zip</action>
+                <action type="shell_command">sudo ./install -mode silent</action>
+            </actions>
+        </install>
+        <readme>
+            Matlab Compiler Runtime
+        </readme>
+		</package>
+</tool_dependency>

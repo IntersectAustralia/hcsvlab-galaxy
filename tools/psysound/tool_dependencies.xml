@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<tool_dependency>
+		<package name="mcr_installer" version="7.16">
+        <repository name="package_mcr_installer_7_16" owner="alveo" prior_installation_required="True"/>
+    </package>
+</tool_dependency>
