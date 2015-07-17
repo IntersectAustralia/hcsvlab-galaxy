@@ -3,8 +3,8 @@
     <package name="python" version="2.7">
         <repository name="package_python_2_7" owner="iuc" prior_installation_required="True" />
     </package>
-    <package name="python_numpy" version="1.9">
-        <repository name="package_numpy_1_9" owner="iuc" prior_installation_required="True"/>
+    <package name="python_numpy" version="1.9.2">
+        <repository name="package_numpy_1_9_2" owner="alveo" prior_installation_required="True"/>
     </package>
     <package name="python_distribute" version="0.7.3">
         <repository name="package_distribute_0_7_3" owner="alveo" prior_installation_required="True"/>
