@@ -19,7 +19,7 @@ def chart_parse(inp, gram, outp):
     o = open(outp, 'w')
     grammar_file = open(gram, 'r').read()
     try:
-        grammar = nltk.parse_cfg(grammar_file)
+        grammar = nltk.CFG.fromstring(grammar_file)
         parser = nltk.ChartParser(grammar)
 
         sents = nltk.sent_tokenize(text)
