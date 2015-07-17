@@ -9,7 +9,7 @@
     <package name="python_distribute" version="0.7.3">
         <repository name="package_distribute_0_7_3" owner="alveo" prior_installation_required="True"/>
     </package>
-    <package name="python_pyyaml" version="1.9">
+    <package name="python_pyyaml" version="3.11">
         <repository name="package_pyyaml_3_11" owner="alveo" prior_installation_required="True"/>
     </package>
     <package name="python_nltk" version="3.0.2">
