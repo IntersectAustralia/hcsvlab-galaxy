@@ -1,7 +1,7 @@
 <tool id="ReadSents" name="Sentence Segmenter" version="1.0.0">
     <description>Segments the text input into separate sentences</description>
     <command interpreter="python">
-        g_read_sents.py $input1 $tab_file
+        g_read_sents.py --input $input1 --output $tab_file
     </command>
     <inputs>
         <param name="input1" type="data" format="txt" label="Select a suitable input file from your history"/>
