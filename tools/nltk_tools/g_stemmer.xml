@@ -1,9 +1,14 @@
 <tool id="Stemmer" name="Stemmer" version="0.01">
-    <description>Takes a list of tokens and generates a list of word stems using one of the stemming algorithms
-    </description>
+    <description>Takes a list of tokens and generates a list of word stems using one of the stemming algorithms</description>
     <command interpreter="python">
         g_stemmer.py --input $input1 --output $tab_file --stemmer $stemming_algorithm
     </command>
+    <requirements>
+        <requirement type="set_environment">PATH</requirement>
+        <requirement type="set_environment">PYTHONPATH</requirement>
+        <requirement type="set_environment">NLTK_DATA</requirement>
+        <requirement type="package" version="1.0">python_nltk_tools</requirement>
+    </requirements>
     <inputs>
         <param name="input1" type="data" format="txt" label="Select a suitable input file from your history"/>
         <param name="stemming_algorithm" type="select" label="Select the stemming algorithm to be used">
