@@ -3,6 +3,12 @@
     <command interpreter="python">
         g_pos.py --input $input1 --output $postags
     </command>
+    <requirements>
+        <requirement type="set_environment">PATH</requirement>
+        <requirement type="set_environment">PYTHONPATH</requirement>
+        <requirement type="set_environment">NLTK_DATA</requirement>
+        <requirement type="package" version="1.0">python_nltk_tools</requirement>
+    </requirements>
     <inputs>
         <param name="input1" type="data" format="json"
                label="Select a suitable input file from your history"/>
