@@ -1,18 +1,27 @@
 <?xml version="1.0"?>
 <tool_dependency>
-    <package name="python" version="2.7">
-        <repository name="package_python_2_7" owner="iuc" prior_installation_required="True" />
-    </package>
-    <package name="python_numpy" version="1.9.2">
-        <repository name="package_numpy_1_9_2" owner="alveo" prior_installation_required="True"/>
-    </package>
-    <package name="python_distribute" version="0.7.3">
-        <repository name="package_distribute_0_7_3" owner="alveo" prior_installation_required="True"/>
-    </package>
-    <package name="python_pyyaml" version="3.11">
-        <repository name="package_pyyaml_3_11" owner="alveo" prior_installation_required="True"/>
-    </package>
-    <package name="python_nltk" version="3.0.2">
-        <repository name="package_nltk_3_0_2" owner="alveo" prior_installation_required="True"/>
+    <package name="python_nltk_tools" version="1.0">
+        <install version="1.0">
+            <actions>
+                <action type="setup_virtualenv">nltk==3.0.2
+                numpy==1.9.2
+                PyYAML==3.11
+                distribute==0.7.3
+                </action>
+                <action type="shell_command">
+                    export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/venv/lib/python2.7/site-packages &amp;&amp;
+                    python -m nltk.downloader -d $INSTALL_DIR/venv/nltk_data all
+                </action>
+                <action type="set_environment">
+                    <environment_variable name="PATH" action="prepend_to">$INSTALL_DIR/venv/bin</environment_variable>
+                    <environment_variable name="PYTHONPATH" action="prepend_to">$INSTALL_DIR/venv/lib/python2.7/site-packages</environment_variable>
+                    <!-- Sets NLTK_DATA in runtime environment -->
+                   <environment_variable action="set_to" name="NLTK_DATA">$INSTALL_DIR/venv/nltk_data</environment_variable>
+                </action>
+            </actions>
+        </install>
+        <readme>
+            The Natural Language Toolkit (NLTK) is a Python package for natural language processing.
+        </readme>
     </package>
 </tool_dependency>
