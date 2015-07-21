@@ -20,7 +20,7 @@
                 </action>
                 <!-- Download the modified reranking-parse and compile it -->
                 <action type="download_file">https://github.com/IntersectAustralia/hcsvlab-galaxy/raw/hcsvlab-pyalveo/tools/jc_parser/alveo-reranking-parser-2011-12-17.tgz</action>
-                <action type="shell_command">tar -zxvf alveo-reranking-parser-2011-12-17.tgz</action>
+                <action type="shell_command">tar zxvf alveo-reranking-parser-2011-12-17.tgz</action>
                 <action type="change_directory">reranking-parser</action>
                 <action type="shell_command">make</action>
                 <!-- Install the JC Parser NLTK wrapper -->
