@@ -4,6 +4,7 @@
   	JCParser.py $input1 $html_file $html_file.files_path
   </command>
   <requirements>
+  	  	<requirement type="package" version="2.5.39">Flex</requirement>
         <requirement type="set_environment">PATH</requirement>
         <requirement type="set_environment">PYTHONPATH</requirement>
         <requirement type="set_environment">NLTK_DATA</requirement>

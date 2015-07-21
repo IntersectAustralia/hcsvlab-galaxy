@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <tool_dependency>
+      <package name="Flex" version="2.5.39">
+        <repository name="package_flex_2_5_39" owner="alveo" prior_installation_required="True"/>
+    </package>
     <package name="jc_parser" version="1.0">
          <install version="1.0">
             <actions>
                 <!-- Install flex and nltk into a virtual python env -->
-                <action type="setup_virtualenv">nltk==3.0.2
-                flex==4.2.1
-                </action>
+                <action type="setup_virtualenv">nltk==3.0.2</action>
                 <action type="shell_command">
                     export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/venv/lib/python2.7/site-packages &amp;&amp;
                     python -m nltk.downloader -d $INSTALL_DIR/venv/nltk_data all

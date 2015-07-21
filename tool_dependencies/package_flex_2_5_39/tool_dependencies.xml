@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <tool_dependency>
-    <package name="Flex" version="3.1.2">
+    <package name="Flex" version="2.5.39">
         <install version="1.0">
             <actions>
-                <action type="download_by_url">http://sourceforge.net/projects/flex/files/flex-2.5.39.tar.gz/download</action>
+                <action type="download_file">http://sourceforge.net/projects/flex/files/flex-2.5.39.tar.gz/download</action>
+                <action type="shell_command">tar -zxvf flex-2.5.39.tar.gz</action>
                 <action type="change_directory">flex-2.5.39</action>
                 <action type="shell_command">./configure --prefix $INSTALL_DIR</action>
                 <action type="shell_command">make</action>
                 <action type="shell_command">make install</action>
-                <action type="shell_command">make clean</action>
             </actions>
         </install>
     </package>
