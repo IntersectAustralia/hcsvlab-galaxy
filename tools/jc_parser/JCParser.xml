@@ -3,13 +3,12 @@
 	<command interpreter="python">
   	JCParser.py $input1 $html_file $html_file.files_path
   </command>
-	
   <requirements>
-  	<requirement type="package" version="2.5.39">Flex</requirement>
-  	<requirement type="package" version="2.7">python</requirement>
-  	<requirement type="package" version="3.0.2">python_nltk</requirement>
+        <requirement type="set_environment">PATH</requirement>
+        <requirement type="set_environment">PYTHONPATH</requirement>
+        <requirement type="set_environment">NLTK_DATA</requirement>
+        <requirement type="package" version="1.0">jc_parser</requirement>
   </requirements>
-
 	<inputs>
 		<param name="input1"  type="data" format="txt" label="Select a suitable input file from your history"/> 
 		<param name="job_name" type="text" size="20" label="Supply a name for the outputs to remind you what they contain" value="JCParser"/>

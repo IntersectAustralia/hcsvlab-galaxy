@@ -1,32 +1,36 @@
 <?xml version="1.0"?>
 <tool_dependency>
-    <package name="python" version="2.7">
-        <repository name="package_python_2_7" owner="iuc" prior_installation_required="True" />
-    </package>
-    <package name="Flex" version="3.1.2">
-        <repository name="package_flex_2_5_39" owner="alveo" prior_installation_required="True"/>
-    </package>
-    <package name="python_nltk" version="3.0.2">
-        <repository name="package_nltk_3_0_2" owner="alveo" prior_installation_required="True"/>
-    </package>
-   <package name="jc_parser" version="1.0">
-       <install version="1.0">
-          <actions>
-          		<action type="download_by_url">https://github.com/IntersectAustralia/hcsvlab-galaxy/raw/hcsvlab-pyalveo/tools/jc_parser/alveo-reranking-parser-2011-12-17.tgz</action>
-          		<action type="change_directory">reranking-parser</action>
-          		<action type="shell_command">make</action>
-          </actions>
-      </install>
-   </package>
-   <package name="jc_parser_nltk_wrapper" version="1.0">
-      <install version="1.0">
-          <actions>
-              <!-- install python-tk -->
+    <package name="jc_parser" version="1.0">
+         <install version="1.0">
+            <actions>
+                <!-- Install flex and nltk into a virtual python env -->
+                <action type="setup_virtualenv">nltk==3.0.2
+                flex==4.2.1
+                </action>
+                <action type="shell_command">
+                    export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/venv/lib/python2.7/site-packages &amp;&amp;
+                    python -m nltk.downloader -d $INSTALL_DIR/venv/nltk_data all
+                </action>
+                <action type="set_environment">
+                    <!-- Sets python pathing and NLTK_DATA variable in runtime environment -->
+                    <environment_variable name="PATH" action="prepend_to">$INSTALL_DIR/venv/bin</environment_variable>
+                    <environment_variable name="PYTHONPATH" action="prepend_to">$INSTALL_DIR/venv/lib/python2.7/site-packages</environment_variable>
+                   <environment_variable action="set_to" name="NLTK_DATA">$INSTALL_DIR/venv/nltk_data</environment_variable>
+                </action>
+                <!-- Download the modified reranking-parse and compile it -->
+                <action type="download_file">https://github.com/IntersectAustralia/hcsvlab-galaxy/raw/hcsvlab-pyalveo/tools/jc_parser/alveo-reranking-parser-2011-12-17.tgz</action>
+                <action type="shell_command">tar -zxvf alveo-reranking-parser-2011-12-17.tgz</action>
+                <action type="change_directory">reranking-parser</action>
+                <action type="shell_command">make</action>
+                <!-- Install the JC Parser NLTK wrapper -->
+                <!-- TODO: install python-tk -->
               <action type="shell_command">git clone git://github.com/IntersectAustralia/jcp-nltk-wrapper.git</action>
-              <action type="shell_command">sudo cp jcp-nltk-wrapper/parse/* /usr/local/lib/python2.7/dist-packages/nltk/parse</action>
-              <!-- <action type="shell_command"></action> -->
-              <!-- <action type="shell_command"></action> -->
-          </actions>
-      </install>
+              <action type="shell_command">sudo cp jcp-nltk-wrapper/parse/* $INSTALL_DIR/venv/lib/python2.7/site-packages/nltk/parse/</action>
+              <!-- TODO: edit johnsoncharniak.ini and johnsoncharniak.py -->
+            </actions>
+        </install>
+      <readme>
+        Johnson-Charniak Parser
+      </readme>
    </package>
 </tool_dependency>
