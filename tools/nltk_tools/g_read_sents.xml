@@ -1,8 +1,14 @@
 <tool id="ReadSents" name="Sentence Segmenter" version="1.0.0">
     <description>Segments the text input into separate sentences</description>
     <command interpreter="python">
-        g_read_sents.py $input1 $tab_file
+        g_read_sents.py --input $input1 --output $tab_file
     </command>
+    <requirements>
+        <requirement type="set_environment">PATH</requirement>
+        <requirement type="set_environment">PYTHONPATH</requirement>
+        <requirement type="set_environment">NLTK_DATA</requirement>
+        <requirement type="package" version="1.0">python_nltk_tools</requirement>
+    </requirements>
     <inputs>
         <param name="input1" type="data" format="txt" label="Select a suitable input file from your history"/>
         <param name="job_name" type="text" size="25"
