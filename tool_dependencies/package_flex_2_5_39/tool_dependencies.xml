@@ -3,8 +3,8 @@
     <package name="Flex" version="2.5.39">
         <install version="1.0">
             <actions>
-                <action type="download_file">http://downloads.sourceforge.net/project/flex/flex-2.5.39.tar.gz?r=&amp;ts=1437461544&amp;use_mirror=internode</action>
-                <action type="shell_command">tar zxvf flex-2.5.39.tar.gz</action>
+                <action type="download_file">http://internode.dl.sourceforge.net/project/flex/flex-2.5.39.tar.gz</action>
+                <action type="shell_command">tar -zxvf flex-2.5.39.tar.gz</action>
                 <action type="change_directory">flex-2.5.39</action>
                 <action type="shell_command">./configure --prefix $INSTALL_DIR</action>
                 <action type="shell_command">make</action>
