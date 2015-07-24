@@ -8,12 +8,11 @@
           	<actions>
           			<!-- populate the environment variables from the dependend repos -->
           			<action type="set_environment_for_install">
+          					<!-- sets the MCRROOT env variable (used in run_pysound3Compiled.sh) -->
           					<repository name="package_mcr_installer_7_16" owner="alveo">
 						        		<package name="mcr_installer" version="7.16" />
 						    		</repository>		
           			</action>
-          			<!-- use env variables to set MACRROOT in run_pysound3Compiled.sh -->
-          			<action type="shell_command">echo "MCRRoot=$MCRROOT"</action>
           	</actions>
         </install>
     </package>
