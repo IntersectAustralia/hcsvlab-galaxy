@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <datatypes>
     <datatype_files>
-        <datatype_file name="binary.py"/>
+        <datatype_file name="psysound.py"/>
     </datatype_files>
     <registration>
         <!-- HCSvLab Datatypes -->
-        <datatype extension="mat" type="galaxy.datatypes.binary:Matlab" mimetype="application/octet-stream" display_in_upload="true"/>
-        <datatype extension="wav" type="galaxy.datatypes.binary:Wav" mimetype="application/octet-stream"  display_in_upload="true"/>
-        <datatype extension="mp3" type="galaxy.datatypes.binary:Mp3" mimetype="application/octet-stream"  display_in_upload="true"/>
-        <datatype extension="avi" type="galaxy.datatypes.binary:Avi" mimetype="application/octet-stream"  display_in_upload="true"/>
-        <datatype extension="ogg" type="galaxy.datatypes.binary:Ogg" mimetype="application/octet-stream"  display_in_upload="true"/>
+        <datatype extension="mat" type="galaxy.datatypes.psysound:Matlab" mimetype="application/octet-stream" display_in_upload="true"/>
+        <datatype extension="wav" type="galaxy.datatypes.psysound:Wav" mimetype="application/octet-stream"  display_in_upload="true"/>
+        <datatype extension="mp3" type="galaxy.datatypes.psysound:Mp3" mimetype="application/octet-stream"  display_in_upload="true"/>
+        <datatype extension="avi" type="galaxy.datatypes.psysound:Avi" mimetype="application/octet-stream"  display_in_upload="true"/>
+        <datatype extension="ogg" type="galaxy.datatypes.psysound:Ogg" mimetype="application/octet-stream"  display_in_upload="true"/>
         <!-- End HCSvLab Datatypes -->
     </registration>
     <sniffers>
-        <sniffer type="galaxy.datatypes.binary:Matlab"/>
-        <sniffer type="galaxy.datatypes.binary:Wav"/>
-        <sniffer type="galaxy.datatypes.binary:Mp3"/>
-        <sniffer type="galaxy.datatypes.binary:Avi"/>
-        <sniffer type="galaxy.datatypes.binary:Ogg"/>
+        <sniffer type="galaxy.datatypes.psysound:Matlab"/>
+        <sniffer type="galaxy.datatypes.psysound:Wav"/>
+        <sniffer type="galaxy.datatypes.psysound:Mp3"/>
+        <sniffer type="galaxy.datatypes.psysound:Avi"/>
+        <sniffer type="galaxy.datatypes.psysound:Ogg"/>
     </sniffers>
 </datatypes>
