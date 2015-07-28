@@ -18,7 +18,7 @@ def Parser():
 
 def collocation(inp, outp, freq_filter, results, coll_type, pos):
     pos = bool(pos == 'true')
-    i = open(inp, 'r').read()
+    i = unicode(open(inp, 'r').read(), errors='ignore')
     o = open(outp, 'w')
     all_words = []
     if pos:

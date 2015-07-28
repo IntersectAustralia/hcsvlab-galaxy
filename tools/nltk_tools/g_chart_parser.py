@@ -1,45 +1,38 @@
 import sys
-import os
 import nltk
 import argparse
 from nltk.corpus import PlaintextCorpusReader
 
-def Parser():
-  the_parser = argparse.ArgumentParser(description="run NER on a text")
-  the_parser.add_argument('--input', required=True, action="store", type=str, help="input text file")
-  the_parser.add_argument('--grammar', required=True,  action="store", type=str, help="grammar file")
-  the_parser.add_argument('--output', required=True,  action="store", type=str, help="output file path")
-  args = the_parser.parse_args()
-  return args
+def arguments():
+    parser = argparse.ArgumentParser(description="run NER on a text")
+    parser.add_argument('--input', required=True, action="store", type=str, help="input text file")
+    parser.add_argument('--grammar', required=True,  action="store", type=str, help="grammar file")
+    parser.add_argument('--output', required=True,  action="store", type=str, help="output file path")
+    args = parser.parse_args()
+    return args
 
 
-def chart_parse(inp, gram, outp):
-
-    text = open(inp, 'r').read()
-    o = open(outp, 'w')
-    grammar_file = open(gram, 'r').read()
+def chart_parse(in_file, grammar_file, out_file):
+    text = unicode(open(in_file, 'r').read(), errors='ignore')
+    output = open(out_file, 'w')
+    grammar_string = open(grammar_file, 'r').read()
     try:
-        grammar = nltk.CFG.fromstring(grammar_file)
+        grammar = nltk.CFG.fromstring(grammar_string)
         parser = nltk.ChartParser(grammar)
-
-        sents = nltk.sent_tokenize(text)
-        for sent in sents:
-            words = nltk.word_tokenize(sent)
+        sentences = nltk.sent_tokenize(text)
+        for sentence in sentences:
+            words = nltk.word_tokenize(sentence)
             tree = parser.parse(words)
-            print >> o, tree
+            output.write(tree)
+            output.write('\n')
     except Exception, e:
-        import sys
-
-        sys.stderr.write(
-            "Error with parsing. Check the input files are correct and the grammar contains every word in the input sequence. \n----\n" + str(
-                e))
+        message = "Error with parsing. Check the input files are correct and the grammar contains every word in the input sequence. \n----\n" + str(e)
+        sys.stderr.write(message)
         sys.exit()
-    o.close()
+    output.close()
 
-if __name__=='__main__':
-
-    args=Parser()
-
+if __name__ == '__main__':
+    args = arguments()
     chart_parse(args.input, args.grammar, args.output)
 
 

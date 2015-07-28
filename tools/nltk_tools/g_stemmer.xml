@@ -1,4 +1,4 @@
-<tool id="Stemmer" name="Stemmer" version="0.01">
+<tool id="Stemmer" name="Stemmer" version="1.0">
     <description>Takes a list of tokens and generates a list of word stems using one of the stemming algorithms</description>
     <command interpreter="python">
         g_stemmer.py --input $input1 --output $tab_file --stemmer $stemming_algorithm

@@ -1,4 +1,4 @@
-<tool id="Tokenize" name="Tokenize Text" version="0.01">
+<tool id="Tokenize" name="Tokenize Text" version="1.0">
     <description>Split a text into words</description>
     <command interpreter="python">
         g_tokenize.py --input $input1 --output $tokens $lower $nopunct

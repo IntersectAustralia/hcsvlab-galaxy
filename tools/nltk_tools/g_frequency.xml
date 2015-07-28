@@ -1,4 +1,4 @@
-<tool id="Frequency" name="Frequency List" version="0.01">
+<tool id="Frequency" name="Frequency List" version="1.0">
     <description>Takes a text input and generates a frequency list</description>
     <command interpreter="python">
         g_frequency.py --input $input1 --output $frequency_table

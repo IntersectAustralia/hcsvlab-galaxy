@@ -1,4 +1,4 @@
-<tool id="POSTag" name="Part of Speech Tagging" version="0.01">
+<tool id="POSTag" name="Part of Speech Tagging" version="1.0">
     <description>Part of Speech tagging</description>
     <command interpreter="python">
         g_pos.py --input $input1 --output $postags

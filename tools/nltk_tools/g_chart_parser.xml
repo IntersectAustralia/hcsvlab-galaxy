@@ -1,4 +1,4 @@
-<tool id="ChartParser" name="Chart Parser" version="0.01">
+<tool id="ChartParser" name="Chart Parser" version="1.0">
     <description>Parse the sentence using Chart Parser and a supplied grammar</description>
     <command interpreter="python">
         g_chart_parser.py --input $input1 --grammar $grammar --output $tab_file

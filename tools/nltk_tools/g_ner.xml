@@ -1,4 +1,4 @@
-<tool id="NER" name="Named Entity Recognition" version="0.01">
+<tool id="NER" name="Named Entity Recognition" version="1.0">
     <description>Named Entity Recognition</description>
     <command interpreter="python">
         g_ner.py --input $input1 --output $nertags

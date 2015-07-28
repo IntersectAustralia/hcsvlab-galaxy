@@ -1,4 +1,4 @@
-<tool id="ReadSents" name="Sentence Segmenter" version="1.0.0">
+<tool id="ReadSents" name="Sentence Segmenter" version="1.0">
     <description>Segments the text input into separate sentences</description>
     <command interpreter="python">
         g_read_sents.py --input $input1 --output $tab_file

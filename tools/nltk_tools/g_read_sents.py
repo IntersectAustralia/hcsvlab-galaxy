@@ -45,5 +45,4 @@ def read_sents(inp, outp):
 
 if __name__ == '__main__':
     args = Parser()
-
     read_sents(args.input, args.output)
