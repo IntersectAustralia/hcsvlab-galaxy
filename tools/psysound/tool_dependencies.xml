@@ -1,19 +1,21 @@
 <?xml version="1.0"?>
 <tool_dependency>
-		<package name="mcr_installer" version="7.16">
+  <!-- The following code is ready to use once the correct version of the MCR Installer is located and 
+      added to the mcr_installer package. -->
+<!--     <package name="mcr_installer" version="7.16">
         <repository name="package_mcr_installer_7_16" owner="alveo" prior_installation_required="True"/>
     </package>
     <package name="psysound" version="7.16">
 				<install version="1.0">
           	<actions>
-          			<!-- populate the environment variables from the dependend repos -->
+          			populate the environment variables from the dependend repos
           			<action type="set_environment_for_install">
-          					<!-- sets the MCRROOT env variable (used in run_pysound3Compiled.sh) -->
+          					sets the MCRROOT env variable (used in run_pysound3Compiled.sh)
           					<repository name="package_mcr_installer_7_16" owner="alveo">
 						        		<package name="mcr_installer" version="7.16" />
 						    		</repository>		
           			</action>
           	</actions>
         </install>
-    </package>
+    </package> -->
 </tool_dependency>
