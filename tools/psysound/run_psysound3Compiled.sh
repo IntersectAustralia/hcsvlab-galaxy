@@ -5,6 +5,8 @@
 # the specified command.
 #
 
+# WARNING: This line (MCRROOT) should be commented out once we obtain the right version of the matlab compiler runtime 
+# to ensure that the toolshed-installed version of the MCR is used.
 MCRROOT='/usr/local/MATLAB/MATLAB_Compiler_Runtime/v716'
 
 exe_name=$0
@@ -64,7 +66,7 @@ exec 2>&6
 
 
 if [[ -s $STDERRLOG ]] ; then
-an error was logged. report it to stderr and prepend it to stdout
+  echo "an error was logged. report it to stderr and prepend it to stdout"
   cat $STDERRLOG>&2
   echo "<b>">&1
   cat $STDERRLOG>&1

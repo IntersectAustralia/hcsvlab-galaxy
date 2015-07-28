@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<tool_dependency>
+	<package name="mcr_installer" version="7.16">
+		<install version="1.0">
+            <actions>
+                <!-- WARNING: This is not the correct version of the Matlab Compiler Runtime required to run the psysound3Compiled executable.
+                    The MCR version installed needs to match the MCR version used to compile the psysound3Compiled executable. -->
+                <action type="download_file">http://43.240.96.66/MCRInstaller.tar.gz</action>
+                <action type="shell_command">tar -xvzf MCRInstaller.tar.gz</action>
+                <action type="change_directory">MCRInstaller</action>
+                <action type="shell_command">echo "destinationFolder=$INSTALL_DIR/MATLAB/MATLAB_Compiler_Runtime" > install.txt</action>
+                <action type="shell_command">./install -mode silent -inputFile install.txt</action>
+                <action type="set_environment">
+                    <environment_variable name="MCRROOT" action="set_to">$INSTALL_DIR/MATLAB/MATLAB_Compiler_Runtime/v716</environment_variable>   
+                </action>
+            </actions>
+        </install>
+        <readme>
+            Matlab Compiler Runtime. 
+            Requires the unzip package to be installed (via apt-get, yum, etc)
+        </readme>
+	</package>
+</tool_dependency>
