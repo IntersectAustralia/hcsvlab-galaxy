@@ -15,15 +15,15 @@ def arguments():
 def chart_parse(in_file, grammar_file, out_file):
     text = unicode(open(in_file, 'r').read(), errors='ignore')
     output = open(out_file, 'w')
-    grammar_string = open(grammar_file, 'r').read()
+    grammar_string = unicode(open(grammar_file, 'r').read(), errors='ignore')
     try:
-        grammar = nltk.CFG.fromstring(grammar_string)
+        grammar = nltk.parse_cfg(grammar_string)
         parser = nltk.ChartParser(grammar)
         sentences = nltk.sent_tokenize(text)
         for sentence in sentences:
             words = nltk.word_tokenize(sentence)
             tree = parser.parse(words)
-            output.write(tree)
+            output.write(tree.pprint())
             output.write('\n')
     except Exception, e:
         message = "Error with parsing. Check the input files are correct and the grammar contains every word in the input sequence. \n----\n" + str(e)
