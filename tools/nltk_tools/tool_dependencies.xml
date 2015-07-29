@@ -3,7 +3,7 @@
     <package name="python_nltk_tools" version="1.0">
         <install version="1.0">
             <actions>
-                <action type="setup_virtualenv">nltk==3.0.2
+                <action type="setup_virtualenv">nltk==2.0.4
                 numpy==1.9.2
                 PyYAML==3.11
                 distribute==0.7.3
