@@ -1,6 +1,7 @@
 import sys
 import os
 import nltk
+import jcp
 from nltk.draw.util import CanvasFrame
 from nltk.draw import TreeWidget
 from subprocess import call
@@ -11,7 +12,7 @@ if not os.path.exists(directory): os.makedirs(directory)
 from nltk.corpus import PlaintextCorpusReader
 corpus = PlaintextCorpusReader(os.path.dirname(inp),os.path.basename(inp))
 sents = corpus.sents()
-parser = nltk.parse.johnsoncharniak.JohnsonCharniak()
+parser = nltk.parse.JohnsonCharniak()
 
 # Assumes X11 window is setup, with display variable :1
 os.environ["DISPLAY"] = ":1"
