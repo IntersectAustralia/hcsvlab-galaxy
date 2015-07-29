@@ -7,7 +7,7 @@
          <install version="1.0">
             <actions>
                 <!-- Install flex and nltk into a virtual python env -->
-                <action type="setup_virtualenv">nltk==3.0.2
+                <action type="setup_virtualenv">nltk==2.0.4
                   git+git://github.com/IntersectAustralia/jcp_with_nltk_wrapper
                 </action>
                 <action type="shell_command">
