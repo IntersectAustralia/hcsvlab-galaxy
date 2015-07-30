@@ -1,7 +1,7 @@
 import sys
 import os
 import nltk
-import jcp
+import jcp.johnsoncharniak
 from nltk.draw.util import CanvasFrame
 from nltk.draw import TreeWidget
 from subprocess import call
