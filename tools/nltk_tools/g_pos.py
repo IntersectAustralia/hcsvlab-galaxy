@@ -3,24 +3,27 @@ import argparse
 import json
 
 def arguments():
-  parser = argparse.ArgumentParser(description="tokenize a text")
-  parser.add_argument('--input', required=True, action="store", type=str, help="input text file")
-  parser.add_argument('--output', required=True,  action="store", type=str, help="output file path")
-  args = parser.parse_args()
-  return args
+    parser = argparse.ArgumentParser(description="tokenize a text")
+    parser.add_argument('--input', required=True, action="store", type=str, help="input text file")
+    parser.add_argument('--output', required=True,  action="store", type=str, help="output file path")
+    args = parser.parse_args()
+    return args
   
 
 def postag(in_file, out_file):
     """Input: a text file with one token per line
     Output: a version of the text with Part of Speech tags written as word/TAG
     """
-    json_string = unicode(open(in_file, 'r').read(), errors='ignore')
-    sentences = json.loads(json_string)
-    postags = []
-    for sentence in sentences:
-        postags.append(nltk.pos_tag(sentence))
+    text = unicode(open(in_file, 'r').read(), errors='ignore')
+    sentences = nltk.sent_tokenize(text)
     output = open(out_file, 'w')
-    output.write(json.dumps(postags, indent=4))
+    for sentence in sentences:
+        tokens = nltk.word_tokenize(sentence)
+        postags = nltk.pos_tag(tokens)
+        for postag in postags:
+            # print postag
+            output.write("%s/%s " % postag)
+    output.write('\n')
     output.close()
 
 

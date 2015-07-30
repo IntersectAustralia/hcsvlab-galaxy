@@ -10,7 +10,7 @@
         <requirement type="package" version="1.0">python_nltk_tools</requirement>
     </requirements>
     <inputs>
-        <param name="input1" type="data" format="json"
+        <param name="input1" type="data" format="txt"
                label="Select a suitable input file from your history"/>
 
         <param name="job_name" type="text" size="25"
