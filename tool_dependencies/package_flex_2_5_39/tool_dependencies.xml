@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="Flex" version="2.5.39">
+        <install version="1.0">
+            <actions>
+                <action type="download_file">http://internode.dl.sourceforge.net/project/flex/flex-2.5.39.tar.gz</action>
+                <action type="shell_command">tar -zxvf flex-2.5.39.tar.gz</action>
+                <action type="change_directory">flex-2.5.39</action>
+                <action type="shell_command">./configure --prefix $INSTALL_DIR</action>
+                <action type="shell_command">make</action>
+                <action type="shell_command">make install</action>
+            </actions>
+        </install>
+    </package>
+</tool_dependency>

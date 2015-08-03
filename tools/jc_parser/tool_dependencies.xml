@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<tool_dependency>
+      <package name="Flex" version="2.5.39">
+        <repository name="package_flex_2_5_39" owner="alveo" prior_installation_required="True"/>
+    </package>
+    <package name="jc_parser" version="1.0">
+         <install version="1.0">
+            <actions>
+                <!-- Install flex and nltk into a virtual python env -->
+                <action type="setup_virtualenv">nltk==3.0.2
+                bllipparser==2015.07.23</action>
+                <action type="shell_command">
+                    export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/venv/lib/python2.7/site-packages &amp;&amp;
+                    python -m nltk.downloader -d $INSTALL_DIR/venv/nltk_data all
+                </action>
+                <action type="set_environment">
+                    <!-- Sets python pathing and NLTK_DATA variable in runtime environment -->
+                    <environment_variable name="PATH" action="prepend_to">$INSTALL_DIR/venv/bin</environment_variable>
+                    <environment_variable name="PYTHONPATH" action="prepend_to">$INSTALL_DIR/venv/lib/python2.7/site-packages</environment_variable>
+                   <environment_variable action="set_to" name="NLTK_DATA">$INSTALL_DIR/venv/nltk_data</environment_variable>
+                </action>
+            </actions>
+        </install>
+      <readme>
+        This galaxy tool makes use of the 2015.07.23 release of the bllipparser.
+
+        The BLLIP parser (also known as the Charniak-Johnson parser or Brown Reranking Parser) is described in the paper Charniak and Johnson (Eugene Charniak and Mark Johnson. "Coarse-to-fine n-best parsing and MaxEnt discriminative reranking." Proceedings of the 43rd Annual Meeting on Association for Computational Linguistics. Association for Computational Linguistics, 2005).
+        The authors request acknowledgement in any publications that make use of this software and any code derived from this software. 
+        Please report the release date of the software that you are using, as this will enable others to compare their results to yours.
+      </readme>
+   </package>
+</tool_dependency>

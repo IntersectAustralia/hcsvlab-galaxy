@@ -3,6 +3,8 @@ import os
 import nltk
 from nltk.draw.util import CanvasFrame
 from nltk.draw import TreeWidget
+from nltk.data import find
+from nltk.parse import bllip
 from subprocess import call
 inp = sys.argv[1]
 outp = sys.argv[2]
@@ -11,7 +13,6 @@ if not os.path.exists(directory): os.makedirs(directory)
 from nltk.corpus import PlaintextCorpusReader
 corpus = PlaintextCorpusReader(os.path.dirname(inp),os.path.basename(inp))
 sents = corpus.sents()
-parser = nltk.parse.johnsoncharniak.JohnsonCharniak()
 
 # Assumes X11 window is setup, with display variable :1
 os.environ["DISPLAY"] = ":1"
@@ -31,13 +32,17 @@ o.write(links)
 o.write('<p>')
 text.write('<p>')
 
+# find the model and create a parser from it
+model_dir = find('models/bllip_wsj_no_aux').path
+bllip = bllip.BllipParser.from_unified_model_dir(model_dir)
+
 for index, item in enumerate(sents):
 	if len(item) == 1 and item[0] == ".":
 		continue
-	tree = parser.parse(item)
-	o.write(tree.pprint().replace("\n", "<br>").replace("  ", "&nbsp;&nbsp;") + "\n")
+	tree = bllip.parse_one(item)
+	o.write(tree.pformat().replace("\n", "<br>").replace("  ", "&nbsp;&nbsp;") + "\n")
 	o.write("<br><br><br>\n")
-	text.write(tree.pprint().replace("\n", "<br>").replace("  ", "&nbsp;&nbsp;") + "\n")
+	text.write(tree.pformat().replace("\n", "<br>").replace("  ", "&nbsp;&nbsp;") + "\n")
 	text.write("<br><br><br>\n")
 	cf = CanvasFrame(width=1200, height=1200, closeenough=1)
 	tc = TreeWidget(cf.canvas(), tree, node_font=('helvetica',-18, 'bold'), leaf_font=('helvetica', -18, 'italic'), roof_fill='white', roof_color='black', 			leaf_color='green4', node_color='blue2')
