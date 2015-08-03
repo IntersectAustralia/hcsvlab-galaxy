@@ -1,7 +1,7 @@
 <tool id="alveo_data_importer" name="Alveo Data Importer" version="0.01" force_history_refresh="True">
 <description>Import documents and metadata from the Alveo</description>
 <command interpreter="python">
-            AlveoDataImporter.py --api_key $api_key --item_list_url $item_list --doc_types $importTypes --output_path alveo
+            AlveoDataImporter.py --api_key $api_key --item_list_url $item_list --doc_types $doc_types --output_path alveo --output_log $log --metadata $metadata --concat $concat
 </command>
 <requirements>
   <requirement type="package" version="0.4">pyalveo</requirement>
@@ -10,7 +10,7 @@
 <param name="item_list" type="text" size="70" label="Item List URL" help="Specify the item list URL from Alveo"/>
 <param name="api_key" type="text" size="30" label="API Key" help="Your Alveo API key"/>
 <param name="job_name" type="text" size="25" label="Supply a name for the outputs to remind you what they contain" value="Alveo Data"/>
-<param name="importTypes" type="select" label="Import document types" display="checkboxes" multiple="true">
+<param name="doc_types" type="select" label="Import document types" display="checkboxes" multiple="true">
 	<option selected="True" value="Text"/>
 	<option selected="True" value="Image"/>
 	<option selected="True" value="Audio"/>
@@ -22,8 +22,11 @@
 </inputs>
 
 <outputs>
- <data format="data" name="output1" label="${job_name}"/>
+  <data format="txt" name="log" label="${job_name}">
+		<discover_datasets pattern="__name_and_ext__" directory="alveo" visible="true" />
+  </data>
 </outputs>
+
 <options refresh="True"/>
 <help>
 <![CDATA[   
