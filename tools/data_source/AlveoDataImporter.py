@@ -3,10 +3,7 @@ import json
 import argparse
 import pyalveo
 import os
-
-
-API_URL = 'https://app.alveo.edu.au'
-
+from urlparse import urlparse
 
 def parser():
     parser = argparse.ArgumentParser(description="Downloads documents in an Alveo Item List")
@@ -21,7 +18,9 @@ def parser():
 
 # TODO: export common function to helper module
 def get_item_list(api_key, item_list_url):
-    client = pyalveo.Client(api_key=api_key, api_url=API_URL)
+    parsed_uri = urlparse(item_list_url)
+    domain = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
+    client = pyalveo.Client(api_key=api_key, api_url=domain)
     return client.get_item_list(item_list_url)
 
 # TODO: export common function to helper module
@@ -104,6 +103,7 @@ def main():
         if args.metadata == "true":
             download_metadata(item_list, args.output_path)
     except pyalveo.APIError as e:
+        import sys
         print("ERROR: " + str(e), file=sys.stderr)
         sys.exit(1)
 
