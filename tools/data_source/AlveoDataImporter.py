@@ -40,7 +40,28 @@ def download_documents(documents, output_path):
             os.makedirs(output_path)
         document.download_content(output_path)
 
-def write_log(args):
+def download_concatenated_documents(item_list, output_path):
+    concatenated_content = ""
+    for item in item_list.get_all():
+        if str(item.metadata()['alveo:primary_text_url'])!= "No primary text found":
+            concatenated_content = concatenated_content + "\n\n" + str(item.get_primary_text())
+    if concatenated_content != "":
+        if not os.path.exists(output_path):
+            os.makedirs(output_path)
+        doc_path = os.path.join(output_path, 'concatenated_texts.txt')
+        concatenated_doc = open (doc_path, 'w')
+        concatenated_doc.write(concatenated_content)
+
+def download_metadata(item_list, output_path):
+    for item in item_list.get_all():
+        name = str(item.url()).split("/")[-1]
+        if not os.path.exists(output_path):
+            os.makedirs(output_path)
+        doc_path = os.path.join(output_path, name+' metadata-document'+'.txt')
+        metadata_doc = open (doc_path, 'w')
+        metadata_doc.write(str(item.metadata()['alveo:metadata']))
+
+def write_log(args, item_list, doc_types):
     log = open (args.output_log, 'a')      
     log.write("Alveo Import Tool.\n\n")        
     log.write("User input parameters are as follows: \n")      
@@ -50,15 +71,28 @@ def write_log(args):
     log.write("\t Import File Types: "+args.doc_types+"\n")     
     log.write("\t Import Metadata: "+args.metadata+"\n")      
     log.write("\t Concatenate Text Files: "+args.concat+"\n\n")
+    log.write("This item list contains "+str(len(item_list))+" items.\n\n")
+    for item in item_list.get_all():
+        log.write("ITEM: " +str(item.url()) + "\n")
+        if args.metadata == "true":
+            log.write("---- metadata document: "+(str(item.metadata()['alveo:metadata']))[:100]+"...\n")
+        for document in item.get_documents():
+            if document.metadata()['dc:type'] in doc_types:
+                log.write("---- document: "+str(document.url())+"\n")
 
 def main():
     args = parser()
     try:
         item_list = get_item_list(args.api_key, args.item_list_url) 
+        if (args.concat == "true"):
+            download_concatenated_documents(item_list, args.output_path)
+        # # TODO: make document only download: if (doc['dc:type'] in selectedTypes) && (concatenate == "false" or doc['dc:type'] != "Text")
         doc_types = args.doc_types.split(',')
         documents = filter_documents_by_type(item_list, doc_types)
         download_documents(documents, args.output_path)
-        write_log(args)
+        write_log(args, item_list, doc_types)
+        if args.metadata == "true":
+            download_metadata(item_list, args.output_path)
     except pyalveo.APIError as e:
         print("ERROR: " + str(e), file=sys.stderr)
         sys.exit(1)
