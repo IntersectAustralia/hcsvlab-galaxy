@@ -25,12 +25,17 @@ def get_item_list(api_key, item_list_url):
     return client.get_item_list(item_list_url)
 
 # TODO: export common function to helper module
-def filter_documents_by_type(item_list, doc_types):
+def filter_item_list_documents_by_type(item_list, doc_types):
     items = item_list.get_all()
     filtered_documents = []
     for item in items:
         documents = item.get_documents()
-        filtered_documents.extend([doc for doc in documents if doc.doc_metadata['dc:type'] in doc_types])
+        filtered_documents.extend([doc for doc in documents if doc.metadata()['dc:type'] in doc_types])
+    return filtered_documents
+
+def filter_documents_by_type(documents, doc_types):
+    filtered_documents = []
+    filtered_documents.extend([doc for doc in documents if doc.metadata()['dc:type'] in doc_types])
     return filtered_documents
 
 # TODO: export common function to helper module
@@ -39,6 +44,15 @@ def download_documents(documents, output_path):
         if not os.path.exists(output_path):
             os.makedirs(output_path)
         document.download_content(output_path)
+
+def download_metadata(item_list, output_path):
+    for item in item_list.get_all():
+        name = str(item.url()).split("/")[-1]
+        if not os.path.exists(output_path):
+            os.makedirs(output_path)
+        doc_path = os.path.join(output_path, name+' metadata-document'+'.txt')
+        metadata_doc = open (doc_path, 'w')
+        metadata_doc.write(str(item.metadata()['alveo:metadata']))
 
 def download_concatenated_documents(item_list, output_path):
     concatenated_content = ""
@@ -51,15 +65,6 @@ def download_concatenated_documents(item_list, output_path):
         doc_path = os.path.join(output_path, 'concatenated_texts.txt')
         concatenated_doc = open (doc_path, 'w')
         concatenated_doc.write(concatenated_content)
-
-def download_metadata(item_list, output_path):
-    for item in item_list.get_all():
-        name = str(item.url()).split("/")[-1]
-        if not os.path.exists(output_path):
-            os.makedirs(output_path)
-        doc_path = os.path.join(output_path, name+' metadata-document'+'.txt')
-        metadata_doc = open (doc_path, 'w')
-        metadata_doc.write(str(item.metadata()['alveo:metadata']))
 
 def write_log(args, item_list, doc_types):
     log = open (args.output_log, 'a')      
@@ -84,11 +89,16 @@ def main():
     args = parser()
     try:
         item_list = get_item_list(args.api_key, args.item_list_url) 
+        doc_types = args.doc_types.split(',')
+        documents = filter_item_list_documents_by_type(item_list, doc_types)
         if (args.concat == "true"):
             download_concatenated_documents(item_list, args.output_path)
-        # # TODO: make document only download: if (doc['dc:type'] in selectedTypes) && (concatenate == "false" or doc['dc:type'] != "Text")
-        doc_types = args.doc_types.split(',')
-        documents = filter_documents_by_type(item_list, doc_types)
+            # if concatenating the text documents, filter out the text typed documents out of the documents to download
+            text_type = "Text"
+            non_text_doc_types = list(doc_types)
+            if text_type in non_text_doc_types:
+                non_text_doc_types.remove(text_type)
+            documents = filter_documents_by_type(documents, non_text_doc_types)
         download_documents(documents, args.output_path)
         write_log(args, item_list, doc_types)
         if args.metadata == "true":
