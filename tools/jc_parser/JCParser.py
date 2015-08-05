@@ -1,3 +1,4 @@
+from __future__ import print_function
 import sys
 import os
 import nltk
@@ -36,22 +37,27 @@ text.write('<p>')
 model_dir = find('models/bllip_wsj_no_aux').path
 bllip = bllip.BllipParser.from_unified_model_dir(model_dir)
 
-for index, item in enumerate(sents):
-	if len(item) == 1 and item[0] == ".":
-		continue
-	tree = bllip.parse_one(item)
-	o.write(tree.pformat().replace("\n", "<br>").replace("  ", "&nbsp;&nbsp;") + "\n")
-	o.write("<br><br><br>\n")
-	text.write(tree.pformat().replace("\n", "<br>").replace("  ", "&nbsp;&nbsp;") + "\n")
-	text.write("<br><br><br>\n")
-	cf = CanvasFrame(width=1200, height=1200, closeenough=1)
-	tc = TreeWidget(cf.canvas(), tree, node_font=('helvetica',-18, 'bold'), leaf_font=('helvetica', -18, 'italic'), roof_fill='white', roof_color='black', 			leaf_color='green4', node_color='blue2')
-	cf.add_widget(tc,10,10)
-	os.chdir(directory)
-	cf.print_to_file('tree.ps')
-	call("convert -trim tree.ps tree" + str(index) + ".png", shell=True, stdout=open(os.devnull, 'wb'))
-	o.write('<a href="tree' + str(index) + '.png" target="_blank"><img src="tree' + str(index) + '.png"/></a><br><br><br><br>\n')
-	drawing.write('<a href="tree' + str(index) + '.png" target="_blank"><img src="tree' + str(index) + '.png"/></a><br><br><br><br>\n')
+try :
+	for index, item in enumerate(sents):
+		if len(item) == 1 and item[0] == ".":
+			continue
+		tree = bllip.parse_one(item)
+		o.write(tree.pformat().replace("\n", "<br>").replace("  ", "&nbsp;&nbsp;") + "\n")
+		o.write("<br><br><br>\n")
+		text.write(tree.pformat().replace("\n", "<br>").replace("  ", "&nbsp;&nbsp;") + "\n")
+		text.write("<br><br><br>\n")
+		cf = CanvasFrame(width=1200, height=1200, closeenough=1)
+		tc = TreeWidget(cf.canvas(), tree, node_font=('helvetica',-18, 'bold'), leaf_font=('helvetica', -18, 'italic'), roof_fill='white', roof_color='black', 			leaf_color='green4', node_color='blue2')
+		cf.add_widget(tc,10,10)
+		os.chdir(directory)
+		cf.print_to_file('tree.ps')
+		call("convert -trim tree.ps tree" + str(index) + ".png", shell=True, stdout=open(os.devnull, 'wb'))
+		o.write('<a href="tree' + str(index) + '.png" target="_blank"><img src="tree' + str(index) + '.png"/></a><br><br><br><br>\n')
+		drawing.write('<a href="tree' + str(index) + '.png" target="_blank"><img src="tree' + str(index) + '.png"/></a><br><br><br><br>\n')
+except UnicodeEncodeError as e:
+	print('Error: The BLLIP Parser currently only accepts ASCII encoded text.', file=sys.stderr)
+	print(e, file=sys.stderr)
+	sys.exit()
 
 o.write("</p>")
 text.write("</p>")
