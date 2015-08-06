@@ -20,7 +20,7 @@ def frequency(in_file, out_file):
     total = float(frequency.N())
     output = open(out_file, 'w')
     output.write("Word\tCount\tPercent\n")
-    for pair in frequency.most_common():
+    for pair in frequency.items():
         output.write("{pair[0]}\t{pair[1]}\t{pc:.2f}\n".format(pair=pair, pc=100*pair[1]/total))
     output.close()
 
