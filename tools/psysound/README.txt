@@ -3,12 +3,12 @@ PsySound V1.0
 Requirements
 ============
 
-Requires libxt-dev and libxmu-dev
+Requires libxt-dev, libxmu-dev and the matlab compiler runtime.
 
 ::
 
-apt-get install libxt-dev
-apt-get install libxmu-dev
+sudo apt-get install libxt-dev
+sudo apt-get install libxmu-dev
 
 Formats Supported
 =================
