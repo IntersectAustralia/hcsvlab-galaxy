@@ -4,6 +4,9 @@
     <command interpreter="python">
         AlveoImporter.py '$url_paste' '$api_key' $tab_file
     </command>
+    <requirements>
+        <requirement type="package" version="1.0">data_source_python_modules</requirement>
+    </requirements>
     <inputs>
         <param name="url_paste" type="text" area="true" size="8x70" label="URL List"
                help="Specify a comma-separated list of URL's"/>
