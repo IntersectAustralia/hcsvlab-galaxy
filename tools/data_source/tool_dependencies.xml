@@ -3,4 +3,11 @@
    <package name="pyalveo" version="0.4">
        <repository name="pyalveo_0_4" owner="alveo" prior_installation_required="True"/>
    </package>
+   <package name="data_source_python_modules" version="1.0">
+        <install version="1.0">
+            <actions>
+                <action type="setup_virtualenv">pycurl==7.19.5.1</action>
+            </actions>
+        </install>
+    </package>
 </tool_dependency>
