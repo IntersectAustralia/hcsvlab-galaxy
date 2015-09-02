@@ -20,26 +20,26 @@
                label="Remove punctuation?"/>
     </inputs>
     <outputs>
-        <data format="json" name="tokens" label="${input1.name} Tokens"/>
+        <data format="txt" name="tokens" label="${input1.name} Tokens"/>
     </outputs>
     <tests>
         <test>
             <param name='input1' value='sample_text.txt'/>
             <param name='lower' value='--lower'/>
             <param name='nopunct' value='--nopunct'/>
-            <output name='tokens' file='sample_text_lower_nopunct.json'/>
+            <output name='tokens' file='sample_text_lower_nopunct.txt'/>
         </test>
         <test>
             <param name='input1' value='sample_text.txt'/>
             <param name='lower' value='--lower'/>
             <param name='nopunct' value=''/>
-            <output name='tokens' file='sample_text_lower.json'/>
+            <output name='tokens' file='sample_text_lower.txt'/>
         </test>
         <test>
             <param name='input1' value='sample_text.txt'/>
             <param name='lower' value=''/>
             <param name='nopunct' value=''/>
-            <output name='tokens' file='sample_text_tok.json'/>
+            <output name='tokens' file='sample_text_tok.txt'/>
         </test>
 
     </tests>
