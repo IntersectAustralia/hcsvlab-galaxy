@@ -8,16 +8,16 @@
         <repository name="package_r_3_1_2" owner="iuc" prior_installation_required="True"/>
     </package>
 
-    <package name="R_lattice" version="0.20.31">
-        <repository name="package_r_lattice_0_20_31" owner="alveo" prior_installation_required="True"/>
+    <package name="R_lattice" version="0.20.33">
+        <repository name="package_r_lattice_0_20_33" owner="alveo" prior_installation_required="True"/>
     </package>
 
     <package name="R_latticeExtra" version="0.6.26">
         <repository name="package_r_lattice_extra_0_6_26" owner="alveo" prior_installation_required="True"/>
     </package>
 
-    <package name="R_gridExtra" version="0.9.1">
-        <repository name="package_r_grid_extra_0_9_1" owner="alveo" prior_installation_required="True"/>
+    <package name="R_gridExtra" version="2.0.0">
+        <repository name="package_r_grid_extra_2_0_0" owner="alveo" prior_installation_required="True"/>
     </package>
 
 </tool_dependency>

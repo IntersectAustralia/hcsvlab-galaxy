@@ -8,9 +8,9 @@
     <requirements>
         <requirement type="set_environment">R_SCRIPT_PATH</requirement>
         <requirement type="package" version="3.1.2">R</requirement>
-        <requirement type="package" version="0.20.31">R_lattice</requirement>
+        <requirement type="package" version="0.20.33">R_lattice</requirement>
         <requirement type="package" version="0.6.26">R_latticeExtra</requirement>
-        <requirement type="package" version="0.9.1">R_gridExtra</requirement>
+        <requirement type="package" version="2.0.0">R_gridExtra</requirement>
     </requirements>
 
 	<inputs>
@@ -48,6 +48,10 @@
 	    		stop("Number of words must be divisible by the number of types without a remainder")
 	    	}
 
+	    	require(lattice , quietly=T)
+			require(latticeExtra , quietly=T)
+			require(gridExtra , quietly=T)
+	    	
 			args &lt;- commandArgs(trailingOnly = TRUE)
 	    	source(file.path(args[1], "parseval.R"))
 
