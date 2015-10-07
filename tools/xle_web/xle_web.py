@@ -15,19 +15,17 @@ outp = sys.argv[3]
 
 # Define Indonesian as pre-selected grammar
 data="""
-    <div width='100%' height='100%'>
-        <iframe name='xle-web-frame' src='' width='100%' height='100%' frameborder='0'></iframe>
-    </div>
-
+<div>
+    <p>To parse the text, press submit below. This will send your text to XLE-Web and
+    open a new window with the parse results.</p>
+    
     <form id='xle-web-form' action='##_XLE_WEB_URL_##' target='xle-web-frame' method='POST' style='display:none'>
-        <input type='text' name='grammar' value='##_GRAMMAR_##'/>
+        <input type='hidden' name='grammar' value='##_GRAMMAR_##'/>
         <input type='text' name='sentence' value="##_SENTENCE_##"/>
-        <input type='text' name="parse-sentence" value="Parse sentence">
+        <input type='hidden' name="parse-sentence" value="Parse sentence">
+        <input type='submit'>
     </form>
-
-    <script type="text/javascript">
-        document.getElementById('xle-web-form').submit();
-    </script>
+</div>
 """
 
 grammar = grammar.replace('__aring__', 'å')
