@@ -10,6 +10,7 @@
                       <repository name="package_r_3_1_2" owner="iuc">
                           <package name="R" version="3.1.2"/>
                       </repository>
+                      <package>http://cran.ms.unimelb.edu.au/src/contrib/gtable_0.1.2.tar.gz</package>
                       <package>http://cran.ms.unimelb.edu.au/src/contrib/gridExtra_2.0.0.tar.gz</package>
                   </action>
               </actions>
