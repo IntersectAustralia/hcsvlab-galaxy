@@ -6,7 +6,7 @@ outp = sys.argv[2]
 o = open(outp,'w')
 file_list = file_list.replace('__tc__', '')
 file_list = file_list.replace(' ', '')
-files = file_list.split("__cr____cn__")
+files = file_list.split("__cn__")
 for f in files:
     try:
         content = urllib2.urlopen(f)
