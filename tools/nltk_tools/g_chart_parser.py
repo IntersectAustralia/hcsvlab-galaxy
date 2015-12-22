@@ -2,6 +2,7 @@ import sys
 import nltk
 import argparse
 from nltk.corpus import PlaintextCorpusReader
+from nltk import CFG
 
 def arguments():
     parser = argparse.ArgumentParser(description="run NER on a text")
@@ -17,14 +18,15 @@ def chart_parse(in_file, grammar_file, out_file):
     output = open(out_file, 'w')
     grammar_string = unicode(open(grammar_file, 'r').read(), errors='ignore')
     try:
-        grammar = nltk.parse_cfg(grammar_string)
+        grammar = CFG.fromstring(grammar_string)
         parser = nltk.ChartParser(grammar)
         sentences = nltk.sent_tokenize(text)
         for sentence in sentences:
             words = nltk.word_tokenize(sentence)
             tree = parser.parse(words)
-            output.write(tree.pprint())
-            output.write('\n')
+            for item in tree:
+                output.write(str(item))
+                output.write('\n')
     except Exception, e:
         message = "Error with parsing. Check the input files are correct and the grammar contains every word in the input sequence. \n----\n" + str(e)
         sys.stderr.write(message)
